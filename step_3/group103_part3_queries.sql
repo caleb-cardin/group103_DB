@@ -81,8 +81,11 @@ INSERT INTO CustomersHasOrders (fkCustomerID, fkOrderID) VALUES (:customer_ID_se
 -- Update order information
 UPDATE Orders SET orderRequest = :request_text_input WHERE orderID = :order_ID_from_update_form;
 
--- Delete a Customer
+-- Delete a order
 DELETE FROM Orders USING orderID = :order_ID_selected_from_browse_order_page;
+
+-- Cleaning up /deleting all orders left hanging from deleted customers
+DELETE FROM Orders WHERE Orders.orderID NOT IN (SELECT CustomersHasOrders.fkOrderID FROM CustomersHasOrders);
 
 -- Customers ------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------------

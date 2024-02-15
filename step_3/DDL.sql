@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS `Orders` (
   orderID INT UNSIGNED NOT NULL AUTO_INCREMENT,
   orderRequest VARCHAR(255) NULL,
   PRIMARY KEY (orderID),
-  UNIQUE INDEX idorders_UNIQUE (orderID ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX idorders_UNIQUE (orderID ASC));
 
 -- -----------------------------------------------------
 -- Table `Assignments`
@@ -25,8 +24,7 @@ CREATE TABLE IF NOT EXISTS `Assignments` (
   CONSTRAINT fk_Assignments_Orders1
     FOREIGN KEY (fkOrderID)
     REFERENCES `Orders` (orderID)
-    ON DELETE CASCADE)
-ENGINE = InnoDB;
+    ON DELETE CASCADE);
 
 -- -----------------------------------------------------
 -- Table `Customers`
@@ -36,8 +34,7 @@ CREATE TABLE IF NOT EXISTS `Customers` (
   customerEmail VARCHAR(255) NOT NULL,
   customerName VARCHAR(255) NOT NULL,
   PRIMARY KEY (customerID),
-  UNIQUE INDEX idcustomers_UNIQUE (customerID ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX idcustomers_UNIQUE (customerID ASC));
 
 -- -----------------------------------------------------
 -- Table `Employees`
@@ -47,8 +44,7 @@ CREATE TABLE IF NOT EXISTS `Employees` (
   employeeEmail VARCHAR(255) NOT NULL,
   employeeName VARCHAR(255) NOT NULL,
   PRIMARY KEY (employeeID),
-  UNIQUE INDEX idemployees_UNIQUE (employeeID ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX idemployees_UNIQUE (employeeID ASC));
 
 
 -- -----------------------------------------------------
@@ -56,7 +52,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `CustomersHasOrders` (
   customerOrderID INT UNSIGNED NOT NULL,
-  fkCustomerID INT UNSIGNED,
+  fkCustomerID INT UNSIGNED NOT NULL,
   fkOrderID INT UNSIGNED NOT NULL,
   PRIMARY KEY (customerOrderID),
   INDEX fk_customers_has_orders_orders1_idx (fkOrderID ASC),
@@ -64,14 +60,13 @@ CREATE TABLE IF NOT EXISTS `CustomersHasOrders` (
   CONSTRAINT fk_customers_has_orders_customers1
     FOREIGN KEY (fkCustomerID)
     REFERENCES `Customers` (customerID)
-    ON DELETE SET NULL
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT fk_customers_has_orders_orders1
     FOREIGN KEY (fkOrderID)
     REFERENCES `Orders` (orderID)
     ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -93,8 +88,7 @@ CREATE TABLE IF NOT EXISTS `AssignmentsHasEmployees` (
     FOREIGN KEY (fkEmployeeID)
     REFERENCES `Employees` (employeeID)
     ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 -- -----------------------------------------------------
 -- Inserts
@@ -105,7 +99,7 @@ INSERT INTO Customers (customerID, customerEmail, customerName)
 VALUES
     (1, 'bigdata@data.data', 'BigData Co.'),
     (2, 'localfarmsMGMT@farms.com', 'LocalFarmersDB'),
-    (3, 'sandyapples@apples.com', 'Sandy Arthur\'s Apples'),
+    (3, 'sandyapples@apples.com', 'Sandy Arthurs Apples'),
     (4, 'john_frill@hello.com', 'Johnny Frillkist');
     
 -- Insert data into the Employees table
