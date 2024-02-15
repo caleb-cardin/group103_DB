@@ -22,36 +22,49 @@
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'none';
+				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
 			else if (dowhat == 'update'){
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'block';
+				document.getElementById('linker').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'linker'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('linker').style.display = 'block';
 				document.getElementById('delete').style.display = 'none';
 			}
 			else if (dowhat == 'delete'){
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
+				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
       else if (dowhat == 'all'){
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'block';
+				document.getElementById('linker').style.display = 'block';
 				document.getElementById('delete').style.display = 'block';
 			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
+				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
     function newAssignment() { showform('insert'); }
-    function updateAssignment(pid) { showform('update'); }
-    function deleteAssignment(pid) { showform ('delete'); }
+    function updateAssignments(pid) { showform('update'); }
+    function deleteAssignments(pid) { showform ('delete'); }
+    function linkAssignments(pid) { showform ('linker'); }
     function browseAssignment() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
@@ -71,6 +84,7 @@
 		<th>id</th>
 		<th>isComplete</th>
 		<th>employeeNotes</th>
+		<th>Assign Employee</th>
 	  </tr>
 	  <tr>
 		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
@@ -79,7 +93,9 @@
 		<td>Yes</td>
 		<td >1 -"Started work on mm-dd-yy" 
 			2 - Mary joined assignment" 
-			3 - "Completed mm-dd-yy"</td>
+			3 - "Completed mm-dd-yy"
+		</td>
+		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	  <tr>
 		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
@@ -87,6 +103,7 @@
 		<td align="right" >2</td>
 		<td >No</td>
 		<td >1 - "Carol and Mary started work dd-mm-yy"</td>
+		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	  <tr>
 		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
@@ -94,6 +111,7 @@
 		<td align="right" >3</td>
 		<td>No</td>
 		<td >1 - " Dave started mm-dd--yy"</td>
+		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	</table>
 	<p>&nbsp;</p>
@@ -102,8 +120,8 @@
 		<form method="POST" id="AddAssignments">
 			<legend><strong>Add Assignments</strong></legend>
 			  <fieldset class="fields">
-				<label> Corresponding OrderID: </label> <input type="text" name="email">
-				<label> Initial Notes: </label> <input type="text" name="name">
+				<label> Corresponding OrderID: </label> <input type="text" name="orderID">
+				<label> Initial Notes: </label> <input type="text" name="notes">
 		  </fieldset>
 			  <input class="btn" type="submit" id="addAssignments" value="Add Assignments">
 			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
@@ -120,6 +138,19 @@
 				<label> Mark Complete: </label> <input type="checkbox" name="complete" value="">
 		  </fieldset>
 			  <input class="btn" type="submit" id="UpdateSaveAssignments" value="Save Update Assignments">
+			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+		</form> 
+	</div><!-- update -->
+	<p>&nbsp;</p>
+	<div id="linker">
+		<form method="POST" id="LinkAssignments">
+			<legend><strong>Link Assignments</strong></legend>
+			  <fieldset class="fields">
+			  <input type="hidden" name="AssignmentsID" id="linkAssignmentsID" value="1">
+			  <label> ID: </label> 1
+				<label> EmployeeID to link: </label> <input type="text" name="notes" value="employee">
+		  </fieldset>
+			  <input class="btn" type="submit" id="linkSaveEmployees" value="Link Employee">
 			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
 		</form> 
 	</div><!-- update -->
