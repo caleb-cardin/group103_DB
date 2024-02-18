@@ -61,16 +61,16 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newAssignment() { showform('insert'); }
+    function newAssignments() { showform('insert'); }
     function updateAssignments(pid) { showform('update'); }
     function deleteAssignments(pid) { showform ('delete'); }
     function linkAssignments(pid) { showform ('linker'); }
-    function browseAssignment() { showform ('browse'); }
+    function browseAssignments() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
 </head>
 
-<body onload="browseAssignment()">
+<body onload="browseAssignments()">
 <h1>Assignments</h1>
 
 [ <a href="index.html">Index</a> | <a href="employees.html">Employees</a> | <a href="assignments.html">Assignments</a> | <a href="orders.html">Orders</a> | <a href="customers.html">Customers</a>  ]
@@ -81,9 +81,9 @@
 	  <tr>
 		<th><a href="#" onClick="newAssignments()">New</a></th>
 		<th></th>
-		<th>id</th>
-		<th>isComplete</th>
-		<th>employeeNotes</th>
+		<th>ID</th>
+		<th>Is Complete</th>
+		<th>Employee Notes</th>
 		<th>Assign Employee</th>
 	  </tr>
 	  <tr>
