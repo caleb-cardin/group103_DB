@@ -1,5 +1,5 @@
 <!--
-// customersHasOrders.html -- Authors: Sharon Bousso, Caleb Cardin -- Created 02.15.2024  -- Last Edited 02.15.2024
+// assignmentsHasCustomers.html -- Authors: Sharon Bousso, Caleb Cardin -- Created 02.15.2024  -- Last Edited 02.15.2024
 
 
 // [1] Citation for the following code snippet:
@@ -9,151 +9,255 @@
 -->
 
 <html>
+
 <head>
-<title>Customer's Orders</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript">
+	<title>Order Manager</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript">
 		function showform(dowhat) {
 			/*
 			* four DIVS: browse, insert, update, delete
 			* this function sets one visible the others not
 			*/
-			if (dowhat == 'insert'){
+			if (dowhat == 'insert') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('linker').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'none';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'none';
+				document.getElementById('browseOrderResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'update'){
+			else if (dowhat == 'searchByCustomer') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('linker').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'block';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'none';
+				document.getElementById('browseOrderResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'delete'){
+			else if (dowhat == 'browseCustomerResults') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('linker').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'block';
+				document.getElementById('browseCustomerResults').style.display = 'block';
+				document.getElementById('searchByOrder').style.display = 'none';
+				document.getElementById('browseOrderResults').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'searchByOrder') {
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'none';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'block';
+				document.getElementById('browseOrderResults').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'browseOrderResults') {
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'none';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'block';
+				document.getElementById('browseOrderResults').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete') {
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'none';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'none';
+				document.getElementById('browseOrderResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
-      else if (dowhat == 'all'){
+			else if (dowhat == 'all') {
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('linker').style.display = 'block';
+				document.getElementById('searchByCustomer').style.display = 'block';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'block';
+				document.getElementById('browseOrderResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('linker').style.display = 'none';
+				document.getElementById('searchByCustomer').style.display = 'none';
+				document.getElementById('browseCustomerResults').style.display = 'none';
+				document.getElementById('searchByOrder').style.display = 'none';
+				document.getElementById('browseOrderResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newCustomersHasOrders() { showform('insert'); }
-    function updateCustomersHasOrders(pid) { showform('update'); }
-    function deleteCustomersHasOrders(pid) { showform ('delete'); }
-    function browseCustomersHasOrders() { showform ('browse'); }
-    function showAll() { showform ('all'); }
-</script>
+		function newCustomersHasOrders() { showform('insert'); }
+		function searchByCustomer(pid) { showform('searchByCustomer'); }
+		function browseCustomerResults(pid) { showform('browseCustomerResults'); }
+		function searchByOrder(pid) { showform('searchByOrder'); }
+		function browseOrderResults(pid) { showform('browseOrderResults'); }
+		function deleteCustomersHasOrders(pid) { showform('delete'); }
+		function browseCustomersHasOrders() { showform('browse'); }
+		function showAll() { showform('all'); }
+	</script>
 </head>
 
 <body onload="browseCustomersHasOrders()">
-<h1>CustomersHasOrders</h1>
+	<h1>CustomersHasOrders</h1>
 
-[ <a href="index.html">Index</a> | <a href="employees.html">Employees</a> | <a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | <a href="employees.html">Employees</a> | <a href="customersHasOrders.html">Customers Has Orders</a> | <a href="assignments.html">Assignments</a> | <a href="orders.html">Orders</a> | <a href="customers.html">Customers</a>  ]
+	[ <a href="index.html">Index</a> | <a href="employees.html">Customers</a> | <a
+		href="assignmentsHasCustomers.html">Orders Has Customers</a> | <a href="employees.html">Customers</a> | <a
+		href="customersHasOrders.html">Customers Has Orders</a> | <a href="assignments.html">Orders</a> | <a
+		href="orders.html">Orders</a> | <a href="customers.html">Customers</a> ]
 
-<div id="browse">
-	<p><a href="#" onClick="showAll()">Display all forms</a> </p>
-	<table border="1" cellpadding="5">
-	  <tr>
-		<th><a href="#" onClick="newCustomersHasOrders()">New</a></th>
-		<th></th>
-		<th>Customer ID</th>
-		<th>Order ID</th>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateCustomersHasOrders('this.CustomersHasOrdersID')">Edit</a></td>
-		<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a></td>
-		<td align="right" >1</td>
-		<td>Yes</td>
-		<td >1 -"Started work on mm-dd-yy" 
-			2 - Mary joined assignment" 
-			3 - "Completed mm-dd-yy"
-		</td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateCustomersHasOrders('this.CustomersHasOrdersID')">Edit</a></td>
-		<td align="right" >2</td>
-		<td >No</td>
-		<td >1 - "Carol and Mary started work dd-mm-yy"</td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateCustomersHasOrders('this.CustomersHasOrdersID')">Edit</a></td>
-		<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a></td>
-		<td align="right" >3</td>
-		<td>No</td>
-		<td >1 - " Dave started mm-dd--yy"</td>
-	  </tr>
-	</table>
-	<p>&nbsp;</p>
+	<div id="browse">
+		<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+		<p><a href="#" onClick="searchByCustomer()">Search Orders By Customer ID</a> </p>
+		<p><a href="#" onClick="searchByOrder()">Search Customer By Orders ID</a> </p>
+		<table border="1" cellpadding="5">
+			<tr>
+				<th><a href="#" onClick="newCustomersHasOrders()">New</a></th>
+				<th></th>
+				<th>ID</th>
+				<th>Customer ID</th>
+				<th>Order ID</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td align="right">1</td>
+				<td>2</td>
+				<td>1</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td align="right">2</td>
+				<td>1</td>
+				<td>2</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td align="right">3</td>
+				<td>3</td>
+				<td>3</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td align="right">4</td>
+				<td>2</td>
+				<td>3</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td align="right">5</td>
+				<td>4</td>
+				<td>4</td>
+			</tr>
+		</table>
 	</div> <!-- browse -->
+	<p>&nbsp;</p>
 	<div id="insert">
-		<form method="POST" id="AddCustomersHasOrders">
-			<legend><strong>Add CustomersHasOrders</strong></legend>
-			  <fieldset class="fields">
-				<label> Corresponding OrderID: </label> <input type="text" name="orderID">
-				<label> Initial Notes: </label> <input type="text" name="notes">
-		  </fieldset>
-			  <input class="btn" type="submit" id="addCustomersHasOrders" value="Add CustomersHasOrders">
-			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
-		</form> 
+		<form method="POST" id="addCustomersHasOrders">
+			<legend><strong>Assign Customer to Order</strong></legend>
+			<fieldset class="fields">
+				<label> Order ID: </label> <input type="text" name="orderID">
+				<label> Customer ID: </label> <input type="text" name="notes">
+			</fieldset>
+			<input class="btn" type="submit" id="addCustomersHasOrders" value="Assign">
+			<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
+		</form>
 	</div><!-- insert -->
 	<p>&nbsp;</p>
-	<div id="update">
-		<form method="POST" id="UpdateCustomersHasOrders">
-			<legend><strong>Update CustomersHasOrders</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="CustomersHasOrdersID" id="updateCustomersHasOrdersID" value="1">
-			  <label> ID: </label> 1
-				<label> Edit Notes: </label> <input type="text" name="notes" value="">
-				<label> Mark Complete: </label> <input type="checkbox" name="complete" value="">
-		  </fieldset>
-			  <input class="btn" type="submit" id="UpdateSaveCustomersHasOrders" value="Save Update CustomersHasOrders">
-			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
-		</form> 
-	</div><!-- update -->
+	<div id="searchByCustomer">
+		<form method="POST" id="searchByCustomer">
+			<legend><strong>Search By Customer ID</strong></legend>
+			<fieldset class="fields">
+				<input type="hidden" name="CustomersID" id="searchByCustomer" value="1">
+				<label> CustomerID: </label> <input type="text" name="id">
+			</fieldset>
+			<input class="btn" type="button" id="searchByCustomer" value="Search" onClick="browseCustomerResults()">
+			<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
+		</form>
+	</div><!-- searchByCustomer -->
 	<p>&nbsp;</p>
-	<div id="linker">
-		<form method="POST" id="LinkCustomersHasOrders">
-			<legend><strong>Link CustomersHasOrders</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="CustomersHasOrdersID" id="linkCustomersHasOrdersID" value="1">
-			  <label> ID: </label> 1
-				<label> EmployeeID to link: </label> <input type="text" name="notes" value="employee">
-		  </fieldset>
-			  <input class="btn" type="submit" id="linkSaveEmployees" value="Link Employee">
-			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
-		</form> 
-	</div><!-- update -->
+	<div id="browseCustomerResults">
+		<table border="1" cellpadding="5">
+			<tr>
+				<th>Customer ID : 3</a></th>
+				<th></th>
+				<th>Order ID</th>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td>3</td>
+
+			</tr>
+		</table>
+		<input class="btn" type="submit" id="back" value="Back to Menu" onClick="browseCustomersHasOrders()">
+	</div><!-- browseCustomerResults -->
+	<p>&nbsp;</p>
+	<div id="searchByOrder">
+		<form method="POST" id="searchByOrder">
+			<legend><strong>Search By Order ID</strong></legend>
+			<fieldset class="fields">
+				<input type="hidden" name="CustomersHasOrdersID" id="searchByOrder"
+					value="1">
+				<label> Order ID: </label> <input type="text" name="id">
+			</fieldset>
+			<input class="btn" type="button" id="searchByOrder" value="Search" onClick="browseOrderResults()">
+			<input class="btn" type="button" value="Cancel" onClick="browseCustomersHasOrders()">
+		</form>
+	</div><!-- searchByOrder -->
+	<p>&nbsp;</p>
+	<div id="browseOrderResults">
+		<table border="1" cellpadding="5">
+			<tr>
+				<th>Order ID : 1</a></th>
+				<th></th>
+				<th>Customer ID</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+				</td>
+				<td>2</td>
+
+			</tr>
+		</table>
+		<input class="btn" type="button" id="back" value="Back to Menu" onClick="browseCustomersHasOrders()">
+	</div><!-- browseOrderResults -->
 	<p>&nbsp;</p>
 	<div id="delete" style="display: block">
-	  <form method="POST" id="DeleteCustomersHasOrders">
-		  <legend><strong>Delete CustomersHasOrders</strong></legend>
-			  <fieldset class="fields">
-			  <p>Are you sure you wish to delete the following?</p>
-			  <input type="hidden" name="CustomersHasOrdersID" id="deleteCustomersHasOrdersID" value="1">
-			  <label><strong>ID:</strong></label> 1
-				
-		</fieldset>
-		<input class="btn" type="submit" id="DeleteCustomersHasOrders" value="Delete CustomersHasOrders">
-			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
-	  </form> 
+		<form method="POST" id="DeleteCustomersHasOrders">
+			<legend><strong>Delete CustomersHasOrders</strong></legend>
+			<fieldset class="fields">
+				<p>Are you sure you wish to delete the following?</p>
+				<input type="hidden" name="CustomersHasOrdersID" id="deleteCustomersHasOrdersID" value="1">
+				<label><strong>ID:</strong></label> 1
+
+			</fieldset>
+			<input class="btn" type="submit" id="DeleteCustomersHasOrders" value="Delete Relationship">
+			<input class="btn" type="button" value="cancel" onClick="browseCustomerResults()">
+		</form>
 	</div><!-- delete -->
-	
-	</body>
-	</html>
+
+</body>
+
+</html>

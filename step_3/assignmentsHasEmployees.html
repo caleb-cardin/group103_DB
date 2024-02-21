@@ -9,16 +9,17 @@
 -->
 
 <html>
+
 <head>
-<title>Assignment Manager</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript">
+	<title>Assignment Manager</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript">
 		function showform(dowhat) {
 			/*
 			* four DIVS: browse, insert, update, delete
 			* this function sets one visible the others not
 			*/
-			if (dowhat == 'insert'){
+			if (dowhat == 'insert') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('searchByEmployee').style.display = 'none';
@@ -27,7 +28,7 @@
 				document.getElementById('browseAssignmentResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'searchByEmployee'){
+			else if (dowhat == 'searchByEmployee') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('searchByEmployee').style.display = 'block';
@@ -36,7 +37,7 @@
 				document.getElementById('browseAssignmentResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'browseEmployeeResults'){
+			else if (dowhat == 'browseEmployeeResults') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('searchByEmployee').style.display = 'block';
@@ -45,7 +46,16 @@
 				document.getElementById('browseAssignmentResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'searchByAssignment'){
+			else if (dowhat == 'searchByAssignment') {
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('searchByEmployee').style.display = 'none';
+				document.getElementById('browseEmployeeResults').style.display = 'none';
+				document.getElementById('searchByAssignment').style.display = 'block';
+				document.getElementById('browseAssignmentResults').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'browseAssignmentResults') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('searchByEmployee').style.display = 'none';
@@ -54,16 +64,7 @@
 				document.getElementById('browseAssignmentResults').style.display = 'block';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'browseAssignmentResults'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('searchByEmployee').style.display = 'none';
-				document.getElementById('browseEmployeeResults').style.display = 'none';
-				document.getElementById('searchByAssignment').style.display = 'block';
-				document.getElementById('browseAssignmentResults').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
+			else if (dowhat == 'delete') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('searchByEmployee').style.display = 'none';
@@ -72,7 +73,7 @@
 				document.getElementById('browseAssignmentResults').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
-      else if (dowhat == 'all'){
+			else if (dowhat == 'all') {
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('searchByEmployee').style.display = 'block';
@@ -91,99 +92,108 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newAssignmentsHasEmployees() { showform('insert'); }
-    function searchByEmployee(pid) { showform('searchByEmployee'); }
-    function browseEmployeeResults(pid) { showform('browseEmployeeResults'); }
-    function searchByAssignment(pid) { showform('searchByAssignment'); }
-    function browseAssignmentResults(pid) { showform('browseAssignmentResults'); }
-    function deleteAssignmentsHasEmployees(pid) { showform ('delete'); }
-    function browseAssignmentsHasEmployees() { showform ('browse'); }
-    function showAll() { showform ('all'); }
-</script>
+		function newAssignmentsHasEmployees() { showform('insert'); }
+		function searchByEmployee(pid) { showform('searchByEmployee'); }
+		function browseEmployeeResults(pid) { showform('browseEmployeeResults'); }
+		function searchByAssignment(pid) { showform('searchByAssignment'); }
+		function browseAssignmentResults(pid) { showform('browseAssignmentResults'); }
+		function deleteAssignmentsHasEmployees(pid) { showform('delete'); }
+		function browseAssignmentsHasEmployees() { showform('browse'); }
+		function showAll() { showform('all'); }
+	</script>
 </head>
 
 <body onload="browseAssignmentsHasEmployees()">
-<h1>AssignmentsHasEmployees</h1>
+	<h1>AssignmentsHasEmployees</h1>
 
-[ <a href="index.html">Index</a> | <a href="employees.html">Employees</a> | <a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | <a href="employees.html">Employees</a> | <a href="customersHasOrders.html">Customers Has Orders</a> | <a href="assignments.html">Assignments</a> | <a href="orders.html">Orders</a> | <a href="customers.html">Customers</a>  ]
+	[ <a href="index.html">Index</a> | <a href="employees.html">Employees</a> | <a
+		href="assignmentsHasEmployees.html">Assignments Has Employees</a> | <a href="employees.html">Employees</a> | <a
+		href="customersHasOrders.html">Customers Has Orders</a> | <a href="assignments.html">Assignments</a> | <a
+		href="orders.html">Orders</a> | <a href="customers.html">Customers</a> ]
 
-<div id="browse">
-	<p><a href="#" onClick="showAll()">Display all forms</a> </p>
-	<table border="1" cellpadding="5">
-	  <tr>
-		<th><a href="#" onClick="newAssignmentsHasEmployees()">New</a></th>
-		<th></th>
-		<th>ID</th>
-		<th>Assignment ID</th>
-		<th>Employee ID</th>
-	  </tr>
-	  <tr>
-		<td></td>
-		<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-		<td align="right" >1</td>
-		<td>1</td>
-		<td>1</td>
-		
-	  </tr>
-	  <tr>
-		<td></td>
-		<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-		<td align="right" >2</td>
-		<td>1</td>
-		<td>2</td>
-		
-	  </tr>
-	  <tr>
-		<td></td>
-		<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-		<td align="right" >3</td>
-		<td>2</td>
-		<td>2</td>
-		
-	  </tr>
-	  <tr>
-		<td></td>
-		<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-		<td align="right" >4</td>
-		<td>2</td>
-		<td>3</td>
-		
-	  </tr>
-	  <tr>
-		<td></td>
-		<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-		<td align="right" >5</td>
-		<td>3</td>
-		<td>4</td>
-	  </tr>
-	</table>
-</div> <!-- browse -->
-<p>&nbsp;</p>
+	<div id="browse">
+		<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+		<p><a href="#" onClick="searchByEmployee()">Search Assignments By Employee ID</a> </p>
+		<p><a href="#" onClick="searchByAssignment()">Search Employee By Assignments ID</a> </p>
+		<table border="1" cellpadding="5">
+			<tr>
+				<th><a href="#" onClick="newAssignmentsHasEmployees()">New</a></th>
+				<th></th>
+				<th>ID</th>
+				<th>Assignment ID</th>
+				<th>Employee ID</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td align="right">1</td>
+				<td>1</td>
+				<td>1</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td align="right">2</td>
+				<td>1</td>
+				<td>2</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td align="right">3</td>
+				<td>2</td>
+				<td>2</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td align="right">4</td>
+				<td>2</td>
+				<td>3</td>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td align="right">5</td>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+		</table>
+	</div> <!-- browse -->
+	<p>&nbsp;</p>
 	<div id="insert">
 		<form method="POST" id="addAssignmentsHasEmployees">
 			<legend><strong>Assign Employee to Assignment</strong></legend>
-			  <fieldset class="fields">
+			<fieldset class="fields">
 				<label> Assignment ID: </label> <input type="text" name="orderID">
 				<label> Employee ID: </label> <input type="text" name="notes">
-		  </fieldset>
-			  <input class="btn" type="submit" id="addAssignmentsHasEmployees" value="Assign">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignmentsHasEmployees()">
-		</form> 
+			</fieldset>
+			<input class="btn" type="submit" id="addAssignmentsHasEmployees" value="Assign">
+			<input class="btn" type="button" value="cancel" onClick="browseAssignmentsHasEmployees()">
+		</form>
 	</div><!-- insert -->
-<p>&nbsp;</p>
+	<p>&nbsp;</p>
 	<div id="searchByEmployee">
 		<form method="POST" id="searchByEmployee">
 			<legend><strong>Search By Employee ID</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="EmployeesID" id="searchByEmployeeID" value="1">
-			  <label> ID: </label> 1
+			<fieldset class="fields">
+				<input type="hidden" name="EmployeesID" id="searchByEmployee" value="1">
 				<label> EmployeeID: </label> <input type="text" name="id">
-		  </fieldset>
-			  <input class="btn" type="submit" id="searchByEmployee" value="Search" onClick="browseEmployeeResults()">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignmentsHasEmployees()">
-		</form> 
+			</fieldset>
+			<input class="btn" type="button" id="searchByEmployee" value="Search" onClick="browseEmployeeResults()">
+			<input class="btn" type="button" value="cancel" onClick="browseAssignmentsHasEmployees()">
+		</form>
 	</div><!-- searchByEmployee -->
-<p>&nbsp;</p>
+	<p>&nbsp;</p>
 	<div id="browseEmployeeResults">
 		<table border="1" cellpadding="5">
 			<tr>
@@ -191,29 +201,31 @@
 				<th></th>
 				<th>Assignment ID</th>
 
-			  </tr>
-			  <tr>
+			</tr>
+			<tr>
 				<td></td>
-				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
 				<td>3</td>
-				
-			  </tr>
+
+			</tr>
 		</table>
-		<input class="btn" type="submit" id="searchByAssignment" value="Back to Menu" onClick="browseAssignmentsHasEmployees()">
+		<input class="btn" type="submit" id="back" value="Back to Menu" onClick="browseAssignmentsHasEmployees()">
 	</div><!-- browseEmployeeResults -->
-<p>&nbsp;</p>
+	<p>&nbsp;</p>
 	<div id="searchByAssignment">
-		<form method="POST" id="searchByAssignmentAssignmentsHasEmployees">
+		<form method="POST" id="searchByAssignment">
 			<legend><strong>Search By Assignment ID</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="AssignmentsHasEmployeesID" id="searchByAssignmentAssignmentsHasEmployeesID" value="1">
+			<fieldset class="fields">
+				<input type="hidden" name="AssignmentsHasEmployeesID" id="searchByAssignment"
+					value="1">
 				<label> Assignment ID: </label> <input type="text" name="id">
-		  </fieldset>
-			  <input class="btn" type="submit" id="searchByAssignment" value="Search" onClick="browseAssignmentResults()">
-			  <input class="btn" type="submit" value="Cancel" onClick="browseAssignmentsHasEmployees()">
-		</form> 
+			</fieldset>
+			<input class="btn" type="button" id="searchByAssignment" value="Search" onClick="browseAssignmentResults()">
+			<input class="btn" type="button" value="Cancel" onClick="browseAssignmentsHasEmployees()">
+		</form>
 	</div><!-- searchByAssignment -->
-<p>&nbsp;</p>
+	<p>&nbsp;</p>
 	<div id="browseAssignmentResults">
 		<table border="1" cellpadding="5">
 			<tr>
@@ -222,34 +234,37 @@
 				<th>Employee ID</th>
 			</tr>
 			<tr>
-			<td></td>
-			<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-			<td>1</td>
-			
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td>1</td>
+
 			</tr>
 			<tr>
-			<td></td>
-			<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a></td>
-			<td>2</td>
-			
+				<td></td>
+				<td><a href="#" onclick="deleteAssignmentsHasEmployees('this.AssignmentsHasEmployeesID')">Delete</a>
+				</td>
+				<td>2</td>
+
 			</tr>
 		</table>
-		<input class="btn" type="submit" id="searchByAssignment" value="Back to Menu" onClick="browseAssignmentsHasEmployees()">
+		<input class="btn" type="button" id="back" value="Back to Menu" onClick="browseAssignmentsHasEmployees()">
 	</div><!-- browseAssignmentResults -->
-<p>&nbsp;</p>
+	<p>&nbsp;</p>
 	<div id="delete" style="display: block">
-	  <form method="POST" id="DeleteAssignmentsHasEmployees">
-		  <legend><strong>Delete AssignmentsHasEmployees</strong></legend>
-			  <fieldset class="fields">
-			  <p>Are you sure you wish to delete the following?</p>
-			  <input type="hidden" name="AssignmentsHasEmployeesID" id="deleteAssignmentsHasEmployeesID" value="1">
-			  <label><strong>ID:</strong></label> 1
-				
-		</fieldset>
-		<input class="btn" type="submit" id="DeleteAssignmentsHasEmployees" value="Delete Relationship">
-			  <input class="btn" type="button" value="cancel" onClick="browseEmployeeResults()">
-	  </form> 
+		<form method="POST" id="DeleteAssignmentsHasEmployees">
+			<legend><strong>Delete AssignmentsHasEmployees</strong></legend>
+			<fieldset class="fields">
+				<p>Are you sure you wish to delete the following?</p>
+				<input type="hidden" name="AssignmentsHasEmployeesID" id="deleteAssignmentsHasEmployeesID" value="1">
+				<label><strong>ID:</strong></label> 1
+
+			</fieldset>
+			<input class="btn" type="submit" id="DeleteAssignmentsHasEmployees" value="Delete Relationship">
+			<input class="btn" type="button" value="cancel" onClick="browseEmployeeResults()">
+		</form>
 	</div><!-- delete -->
-	
-	</body>
-	</html>
+
+</body>
+
+</html>
