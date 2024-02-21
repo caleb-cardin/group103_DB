@@ -1,5 +1,5 @@
 <!--
-// assignments.html -- Authors: Sharon Bousso, Caleb Cardin -- Created 02.15.2024  -- Last Edited 02.15.2024
+// customersHasOrders.html -- Authors: Sharon Bousso, Caleb Cardin -- Created 02.15.2024  -- Last Edited 02.15.2024
 
 
 // [1] Citation for the following code snippet:
@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>Assignment Manager</title>
+<title>Customer's Orders</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
 		function showform(dowhat) {
@@ -30,13 +30,6 @@
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'block';
 				document.getElementById('linker').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'linker'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('linker').style.display = 'block';
 				document.getElementById('delete').style.display = 'none';
 			}
 			else if (dowhat == 'delete'){
@@ -61,17 +54,16 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newAssignments() { showform('insert'); }
-    function updateAssignments(pid) { showform('update'); }
-    function deleteAssignments(pid) { showform ('delete'); }
-    function linkAssignments(pid) { showform ('linker'); }
-    function browseAssignments() { showform ('browse'); }
+    function newCustomersHasOrders() { showform('insert'); }
+    function updateCustomersHasOrders(pid) { showform('update'); }
+    function deleteCustomersHasOrders(pid) { showform ('delete'); }
+    function browseCustomersHasOrders() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
 </head>
 
-<body onload="browseAssignments()">
-<h1>Assignments</h1>
+<body onload="browseCustomersHasOrders()">
+<h1>CustomersHasOrders</h1>
 
 [ <a href="index.html">Index</a> | <a href="employees.html">Employees</a> | <a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | <a href="employees.html">Employees</a> | <a href="customersHasOrders.html">Customers Has Orders</a> | <a href="assignments.html">Assignments</a> | <a href="orders.html">Orders</a> | <a href="customers.html">Customers</a>  ]
 
@@ -79,93 +71,87 @@
 	<p><a href="#" onClick="showAll()">Display all forms</a> </p>
 	<table border="1" cellpadding="5">
 	  <tr>
-		<th><a href="#" onClick="newAssignments()">New</a></th>
+		<th><a href="#" onClick="newCustomersHasOrders()">New</a></th>
 		<th></th>
-		<th>ID</th>
-		<th>Is Complete</th>
-		<th>Employee Notes</th>
-		<th>Assign Employee</th>
+		<th>Customer ID</th>
+		<th>Order ID</th>
 	  </tr>
 	  <tr>
-		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
-		<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
+		<td><a href="#" onClick="updateCustomersHasOrders('this.CustomersHasOrdersID')">Edit</a></td>
+		<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a></td>
 		<td align="right" >1</td>
 		<td>Yes</td>
 		<td >1 -"Started work on mm-dd-yy" 
 			2 - Mary joined assignment" 
 			3 - "Completed mm-dd-yy"
 		</td>
-		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	  <tr>
-		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
-		<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
+		<td><a href="#" onClick="updateCustomersHasOrders('this.CustomersHasOrdersID')">Edit</a></td>
 		<td align="right" >2</td>
 		<td >No</td>
 		<td >1 - "Carol and Mary started work dd-mm-yy"</td>
-		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	  <tr>
-		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
-		<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
+		<td><a href="#" onClick="updateCustomersHasOrders('this.CustomersHasOrdersID')">Edit</a></td>
+		<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a></td>
 		<td align="right" >3</td>
 		<td>No</td>
 		<td >1 - " Dave started mm-dd--yy"</td>
-		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	</table>
 	<p>&nbsp;</p>
 	</div> <!-- browse -->
 	<div id="insert">
-		<form method="POST" id="AddAssignments">
-			<legend><strong>Add Assignments</strong></legend>
+		<form method="POST" id="AddCustomersHasOrders">
+			<legend><strong>Add CustomersHasOrders</strong></legend>
 			  <fieldset class="fields">
 				<label> Corresponding OrderID: </label> <input type="text" name="orderID">
 				<label> Initial Notes: </label> <input type="text" name="notes">
 		  </fieldset>
-			  <input class="btn" type="submit" id="addAssignments" value="Add Assignments">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			  <input class="btn" type="submit" id="addCustomersHasOrders" value="Add CustomersHasOrders">
+			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
 		</form> 
 	</div><!-- insert -->
 	<p>&nbsp;</p>
 	<div id="update">
-		<form method="POST" id="UpdateAssignments">
-			<legend><strong>Update Assignments</strong></legend>
+		<form method="POST" id="UpdateCustomersHasOrders">
+			<legend><strong>Update CustomersHasOrders</strong></legend>
 			  <fieldset class="fields">
-			  <input type="hidden" name="AssignmentsID" id="updateAssignmentsID" value="1">
+			  <input type="hidden" name="CustomersHasOrdersID" id="updateCustomersHasOrdersID" value="1">
 			  <label> ID: </label> 1
 				<label> Edit Notes: </label> <input type="text" name="notes" value="">
 				<label> Mark Complete: </label> <input type="checkbox" name="complete" value="">
 		  </fieldset>
-			  <input class="btn" type="submit" id="UpdateSaveAssignments" value="Save Update Assignments">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			  <input class="btn" type="submit" id="UpdateSaveCustomersHasOrders" value="Save Update CustomersHasOrders">
+			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
 		</form> 
 	</div><!-- update -->
 	<p>&nbsp;</p>
 	<div id="linker">
-		<form method="POST" id="LinkAssignments">
-			<legend><strong>Link Assignments</strong></legend>
+		<form method="POST" id="LinkCustomersHasOrders">
+			<legend><strong>Link CustomersHasOrders</strong></legend>
 			  <fieldset class="fields">
-			  <input type="hidden" name="AssignmentsID" id="linkAssignmentsID" value="1">
+			  <input type="hidden" name="CustomersHasOrdersID" id="linkCustomersHasOrdersID" value="1">
 			  <label> ID: </label> 1
 				<label> EmployeeID to link: </label> <input type="text" name="notes" value="employee">
 		  </fieldset>
 			  <input class="btn" type="submit" id="linkSaveEmployees" value="Link Employee">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
 		</form> 
 	</div><!-- update -->
 	<p>&nbsp;</p>
 	<div id="delete" style="display: block">
-	  <form method="POST" id="DeleteAssignments">
-		  <legend><strong>Delete Assignments</strong></legend>
+	  <form method="POST" id="DeleteCustomersHasOrders">
+		  <legend><strong>Delete CustomersHasOrders</strong></legend>
 			  <fieldset class="fields">
 			  <p>Are you sure you wish to delete the following?</p>
-			  <input type="hidden" name="AssignmentsID" id="deleteAssignmentsID" value="1">
+			  <input type="hidden" name="CustomersHasOrdersID" id="deleteCustomersHasOrdersID" value="1">
 			  <label><strong>ID:</strong></label> 1
 				
 		</fieldset>
-		<input class="btn" type="submit" id="DeleteAssignments" value="Delete Assignments">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+		<input class="btn" type="submit" id="DeleteCustomersHasOrders" value="Delete CustomersHasOrders">
+			  <input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
 	  </form> 
 	</div><!-- delete -->
 	
