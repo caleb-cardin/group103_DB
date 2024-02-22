@@ -106,161 +106,161 @@
 <body onload="browseCustomersHasOrders()">
 	<h1>CustomersHasOrders</h1>
 
-    [ <a href="index.html">Index</a> | 
-	<a href="employees.html">Employees</a> | 
-	<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | 
-	<a href="assignments.html">Assignments</a> | 
-	<a href="orders.html">Orders</a> |
-	<a href="customersHasOrders.html">Customers Has Orders</a> | 
-	<a href="customers.html">Customers</a>  ]
+	<nav>[ <a href="index.html">Index</a> |
+		<a href="employees.html">Employees</a> |
+		<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> |
+		<a href="assignments.html">Assignments</a> |
+		<a href="orders.html">Orders</a> |
+		<a href="customersHasOrders.html">Customers Has Orders</a> |
+		<a href="customers.html">Customers</a> ]
+	</nav>
+	<article>
+		<div id="browse">
+			<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+			<p><a href="#" onClick="searchByCustomer()">Search Orders By Customer ID</a> </p>
+			<p><a href="#" onClick="searchByOrder()">Search Customer By Orders ID</a> </p>
+			<table border="1" cellpadding="5">
+				<tr>
+					<th><a href="#" onClick="newCustomersHasOrders()">New</a></th>
+					<th></th>
+					<th>ID</th>
+					<th>Customer ID</th>
+					<th>Order ID</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td align="right">1</td>
+					<td>2</td>
+					<td>1</td>
 
-	<div id="browse">
-		<p><a href="#" onClick="showAll()">Display all forms</a> </p>
-		<p><a href="#" onClick="searchByCustomer()">Search Orders By Customer ID</a> </p>
-		<p><a href="#" onClick="searchByOrder()">Search Customer By Orders ID</a> </p>
-		<table border="1" cellpadding="5">
-			<tr>
-				<th><a href="#" onClick="newCustomersHasOrders()">New</a></th>
-				<th></th>
-				<th>ID</th>
-				<th>Customer ID</th>
-				<th>Order ID</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td align="right">1</td>
-				<td>2</td>
-				<td>1</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td align="right">2</td>
+					<td>1</td>
+					<td>2</td>
 
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td align="right">2</td>
-				<td>1</td>
-				<td>2</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td align="right">3</td>
+					<td>3</td>
+					<td>3</td>
 
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td align="right">3</td>
-				<td>3</td>
-				<td>3</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td align="right">4</td>
+					<td>2</td>
+					<td>3</td>
 
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td align="right">4</td>
-				<td>2</td>
-				<td>3</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td align="right">5</td>
+					<td>4</td>
+					<td>4</td>
+				</tr>
+			</table>
+		</div> <!-- browse -->
+		<p>&nbsp;</p>
+		<div id="insert">
+			<form method="POST" id="addCustomersHasOrders">
+				<legend><strong>Assign Customer to Order</strong></legend>
+				<fieldset class="fields">
+					<label> Order ID: </label> <input type="text" name="orderID">
+					<label> Customer ID: </label> <input type="text" name="notes">
+				</fieldset>
+				<input class="btn" type="submit" id="addCustomersHasOrders" value="Assign">
+				<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
+			</form>
+		</div><!-- insert -->
+		<p>&nbsp;</p>
+		<div id="searchByCustomer">
+			<form method="POST" id="searchByCustomer">
+				<legend><strong>Search By Customer ID</strong></legend>
+				<fieldset class="fields">
+					<input type="hidden" name="CustomersID" id="searchByCustomer" value="1">
+					<label> CustomerID: </label> <input type="text" name="id">
+				</fieldset>
+				<input class="btn" type="button" id="searchByCustomer" value="Search" onClick="browseCustomerResults()">
+				<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
+			</form>
+		</div><!-- searchByCustomer -->
+		<p>&nbsp;</p>
+		<div id="browseCustomerResults">
+			<table border="1" cellpadding="5">
+				<tr>
+					<th>Customer ID : 3</a></th>
+					<th></th>
+					<th>Order ID</th>
 
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td align="right">5</td>
-				<td>4</td>
-				<td>4</td>
-			</tr>
-		</table>
-	</div> <!-- browse -->
-	<p>&nbsp;</p>
-	<div id="insert">
-		<form method="POST" id="addCustomersHasOrders">
-			<legend><strong>Assign Customer to Order</strong></legend>
-			<fieldset class="fields">
-				<label> Order ID: </label> <input type="text" name="orderID">
-				<label> Customer ID: </label> <input type="text" name="notes">
-			</fieldset>
-			<input class="btn" type="submit" id="addCustomersHasOrders" value="Assign">
-			<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
-		</form>
-	</div><!-- insert -->
-	<p>&nbsp;</p>
-	<div id="searchByCustomer">
-		<form method="POST" id="searchByCustomer">
-			<legend><strong>Search By Customer ID</strong></legend>
-			<fieldset class="fields">
-				<input type="hidden" name="CustomersID" id="searchByCustomer" value="1">
-				<label> CustomerID: </label> <input type="text" name="id">
-			</fieldset>
-			<input class="btn" type="button" id="searchByCustomer" value="Search" onClick="browseCustomerResults()">
-			<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
-		</form>
-	</div><!-- searchByCustomer -->
-	<p>&nbsp;</p>
-	<div id="browseCustomerResults">
-		<table border="1" cellpadding="5">
-			<tr>
-				<th>Customer ID : 3</a></th>
-				<th></th>
-				<th>Order ID</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td>3</td>
 
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td>3</td>
+				</tr>
+			</table>
+			<input class="btn" type="submit" id="back" value="Back to Menu" onClick="browseCustomersHasOrders()">
+		</div><!-- browseCustomerResults -->
+		<p>&nbsp;</p>
+		<div id="searchByOrder">
+			<form method="POST" id="searchByOrder">
+				<legend><strong>Search By Order ID</strong></legend>
+				<fieldset class="fields">
+					<input type="hidden" name="CustomersHasOrdersID" id="searchByOrder" value="1">
+					<label> Order ID: </label> <input type="text" name="id">
+				</fieldset>
+				<input class="btn" type="button" id="searchByOrder" value="Search" onClick="browseOrderResults()">
+				<input class="btn" type="button" value="Cancel" onClick="browseCustomersHasOrders()">
+			</form>
+		</div><!-- searchByOrder -->
+		<p>&nbsp;</p>
+		<div id="browseOrderResults">
+			<table border="1" cellpadding="5">
+				<tr>
+					<th>Order ID : 1</a></th>
+					<th></th>
+					<th>Customer ID</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
+					</td>
+					<td>2</td>
 
-			</tr>
-		</table>
-		<input class="btn" type="submit" id="back" value="Back to Menu" onClick="browseCustomersHasOrders()">
-	</div><!-- browseCustomerResults -->
-	<p>&nbsp;</p>
-	<div id="searchByOrder">
-		<form method="POST" id="searchByOrder">
-			<legend><strong>Search By Order ID</strong></legend>
-			<fieldset class="fields">
-				<input type="hidden" name="CustomersHasOrdersID" id="searchByOrder"
-					value="1">
-				<label> Order ID: </label> <input type="text" name="id">
-			</fieldset>
-			<input class="btn" type="button" id="searchByOrder" value="Search" onClick="browseOrderResults()">
-			<input class="btn" type="button" value="Cancel" onClick="browseCustomersHasOrders()">
-		</form>
-	</div><!-- searchByOrder -->
-	<p>&nbsp;</p>
-	<div id="browseOrderResults">
-		<table border="1" cellpadding="5">
-			<tr>
-				<th>Order ID : 1</a></th>
-				<th></th>
-				<th>Customer ID</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#" onclick="deleteCustomersHasOrders('this.CustomersHasOrdersID')">Delete</a>
-				</td>
-				<td>2</td>
+				</tr>
+			</table>
+			<input class="btn" type="button" id="back" value="Back to Menu" onClick="browseCustomersHasOrders()">
+		</div><!-- browseOrderResults -->
+		<p>&nbsp;</p>
+		<div id="delete" style="display: block">
+			<form method="POST" id="DeleteCustomersHasOrders">
+				<legend><strong>Delete Customer-Order Relationship</strong></legend>
+				<fieldset class="fields">
+					<p>Are you sure you wish to delete the following?</p>
+					<input type="hidden" name="CustomersHasOrdersID" id="deleteCustomersHasOrdersID" value="1">
+					<label><strong>ID:</strong></label> 1
 
-			</tr>
-		</table>
-		<input class="btn" type="button" id="back" value="Back to Menu" onClick="browseCustomersHasOrders()">
-	</div><!-- browseOrderResults -->
-	<p>&nbsp;</p>
-	<div id="delete" style="display: block">
-		<form method="POST" id="DeleteCustomersHasOrders">
-			<legend><strong>Delete Customer-Order Relationship</strong></legend>
-			<fieldset class="fields">
-				<p>Are you sure you wish to delete the following?</p>
-				<input type="hidden" name="CustomersHasOrdersID" id="deleteCustomersHasOrdersID" value="1">
-				<label><strong>ID:</strong></label> 1
-
-			</fieldset>
-			<input class="btn" type="submit" id="DeleteCustomersHasOrders" value="Delete Relationship">
-			<input class="btn" type="button" value="cancel" onClick="browseCustomerResults()">
-		</form>
-	</div><!-- delete -->
-
+				</fieldset>
+				<input class="btn" type="submit" id="DeleteCustomersHasOrders" value="Delete Relationship">
+				<input class="btn" type="button" value="cancel" onClick="browseCustomersHasOrders()">
+			</form>
+		</div><!-- delete -->
+	</article>
 </body>
 
 </html>

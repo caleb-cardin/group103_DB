@@ -9,44 +9,45 @@
 -->
 
 <html>
+
 <head>
-<title>Orders Manager</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript">
+	<title>Orders Manager</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript">
 		function showform(dowhat) {
 			/*
 			* four DIVS: browse, insert, update, delete
 			* this function sets one visible the others not
 			*/
-			if (dowhat == 'insert'){
+			if (dowhat == 'insert') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'update'){
+			else if (dowhat == 'update') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'block';
 				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'linker'){
+			else if (dowhat == 'linker') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('linker').style.display = 'block';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'delete'){
+			else if (dowhat == 'delete') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
-      else if (dowhat == 'all'){
+			else if (dowhat == 'all') {
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'block';
@@ -61,125 +62,130 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newOrder() { showform('insert'); }
-    function updateOrder(pid) { showform('update'); }
-    function assignOrder(pid) { showform('linker'); }
-    function deleteOrder(pid) { showform ('delete'); }
-    function browseOrder() { showform ('browse'); }
-    function showAll() { showform ('all'); }
-</script>
+		function newOrder() { showform('insert'); }
+		function updateOrder(pid) { showform('update'); }
+		function assignOrder(pid) { showform('linker'); }
+		function deleteOrder(pid) { showform('delete'); }
+		function browseOrder() { showform('browse'); }
+		function showAll() { showform('all'); }
+	</script>
 </head>
 
 <body onload="browseOrder()">
-<h1>Orders</h1>
+	<h1>Orders</h1>
+	<nav>[ <a href="index.html">Index</a> |
+		<a href="employees.html">Employees</a> |
+		<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> |
+		<a href="assignments.html">Assignments</a> |
+		<a href="orders.html">Orders</a> |
+		<a href="customersHasOrders.html">Customers Has Orders</a> |
+		<a href="customers.html">Customers</a> ]
+	</nav>
 
-[ <a href="index.html">Index</a> | 
-<a href="employees.html">Employees</a> | 
-<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | 
-<a href="assignments.html">Assignments</a> | 
-<a href="orders.html">Orders</a> |
-<a href="customersHasOrders.html">Customers Has Orders</a> | 
-<a href="customers.html">Customers</a>  ]
+	<article>
+		<div id="browse">
+			<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+			<table border="1" cellpadding="5">
+				<tr>
+					<th><a href="#" onClick="newOrder()">New</a></th>
+					<th></th>
+					<th>ID</th>
+					<th>Request</th>
+					<th>Linked Assignment ID</th>
+					<th>Assign Customer</th>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
+					<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
+					<td align="right">1</td>
+					<td>"Need to update/ add to stock types on existing DB" </td>
+					<td align="right">1</td>
+					<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
+					<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
+					<td align="right">2</td>
+					<td>"Dropped entire DB - need help!"</td>
+					<td align="right">None</td>
+					<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
+					<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
+					<td align="right">3</td>
+					<td>"Need new query to find all apples of a particular variety and weight"</td>
+					<td align="right">2</td>
+					<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
+					<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
+					<td align="right">4</td>
+					<td>"Need to create new DBMS for my company " </td>
+					<td align="right">3</td>
+					<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
+				</tr>
+			</table>
+			<p>&nbsp;</p>
+		</div> <!-- browse -->
 
-<div id="browse">
-	<p><a href="#" onClick="showAll()">Display all forms</a> </p>
-	<table border="1" cellpadding="5">
-	  <tr>
-		<th><a href="#" onClick="newOrder()">New</a></th>
-		<th></th>
-		<th>ID</th>
-		<th>Request</th>
-		<th>Linked Assignment ID</th>
-		<th>Assign Customer</th>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
-		<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
-		<td align="right" >1</td>
-		<td>"Need to update/ add to stock types on existing DB" </td>
-		<td align="right" >1</td>
-		<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
-		<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
-		<td align="right" >2</td>
-		<td >"Dropped entire DB - need help!"</td>
-		<td align="right" >None</td>
-		<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
-		<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
-		<td align="right" >3</td>
-		<td>"Need new query to find all apples of a particular variety and weight"</td>
-		<td align="right" >2</td>
-		<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateOrder('this.OrderID')">Edit</a></td>
-		<td><a href="#" onclick="deleteOrder('this.OrderID')">Delete</a></td>
-		<td align="right" >4</td>
-		<td>"Need to create new DBMS for my company " </td>
-		<td align="right" >3</td>
-		<td><a href="#" onclick="assignOrder('this.OrderID')">Assign</a></td>
-	  </tr>
-	</table>
-	<p>&nbsp;</p>
-	</div> <!-- browse -->
-	<div id="insert">
-		<form method="POST" id="AddOrder">
-			<legend><strong>Add Order</strong></legend>
-			  <fieldset class="fields">
-				<label> orderRequest </label> <input type="text" name="orderRequest">
-				<label> customerID </label> <input type="text" name="customerID">
-		  </fieldset>
-			  <input class="btn" type="submit" id="addOrder" value="Add Order">
-			  <input class="btn" type="button" value="cancel" onClick="browseOrder()">
-		</form> 
-	</div><!-- insert -->
-	<p>&nbsp;</p>
-	<div id="update">
-		<form method="POST" id="UpdateOrder">
-			<legend><strong>Update Order</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="OrderID" id="updateOrderID" value="1">
-			  <label> ID: </label> 1
-				<label> Request Notes: </label> <input type="text" name="notes" value="Notes ... ">
-				<label> Create Assignment From Order </label> <input type="checkbox" name="assign" value="">
-		  </fieldset>
-			  <input class="btn" type="submit" id="UpdateSaveOrder" value="Save Update Order">
-			  <input class="btn" type="button" value="cancel" onClick="browseOrder()">
-		</form> 
-	</div><!-- update -->
-	<p>&nbsp;</p>
-	<div id="linker">
-		<form method="POST" id="AssignOrder">
-			<legend><strong>Link Order to Customer</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="OrderID" id="updateOrderID" value="1">
-			  <label> From ID: </label>1
-				<label>   CustomerID to link: </label> <input type="text" name="customerID" text="#">
 
-		  </fieldset>
-			  <input class="btn" type="submit" id="LinkOrder" value="Link Order">
-			  <input class="btn" type="button" value="cancel" onClick="browseOrder()">
-		</form> 
-	</div><!-- update -->
-	<p>&nbsp;</p>
-	<div id="delete" style="display: block">
-	  <form method="POST" id="DeleteOrder">
-		  <legend><strong>Delete Order</strong></legend>
-			  <fieldset class="fields">
-			  <p>Are you sure you wish to delete the following?</p>
-			  <input type="hidden" name="OrderID" id="deleteOrderID" value="1">
-			  <label><strong>ID:</strong></label> 1
-				
-		</fieldset>
-		<input class="btn" type="submit" id="DeleteOrder" value="Delete Order">
-			  <input class="btn" type="button" value="cancel" onClick="browseOrder()">
-	  </form> 
-	</div><!-- delete -->
-	
-	</body>
-	</html>
+		<div id="insert">
+			<form method="POST" id="AddOrder">
+				<legend><strong>Add Order</strong></legend>
+				<fieldset class="fields">
+					<label> orderRequest </label> <input type="text" name="orderRequest">
+					<label> customerID </label> <input type="text" name="customerID">
+				</fieldset>
+				<input class="btn" type="submit" id="addOrder" value="Add Order">
+				<input class="btn" type="button" value="cancel" onClick="browseOrder()">
+			</form>
+		</div><!-- insert -->
+
+		<p>&nbsp;</p>
+		<div id="update">
+			<form method="POST" id="UpdateOrder">
+				<legend><strong>Update Order</strong></legend>
+				<fieldset class="fields">
+					<input type="hidden" name="OrderID" id="updateOrderID" value="1">
+					<label> ID: </label> 1
+					<label> Request Notes: </label> <input type="text" name="notes" value="Notes ... ">
+					<label> Create Assignment From Order </label> <input type="checkbox" name="assign" value="">
+				</fieldset>
+				<input class="btn" type="submit" id="UpdateSaveOrder" value="Save Update Order">
+				<input class="btn" type="button" value="cancel" onClick="browseOrder()">
+			</form>
+		</div><!-- update -->
+		<p>&nbsp;</p>
+		<div id="linker">
+			<form method="POST" id="AssignOrder">
+				<legend><strong>Link Order to Customer</strong></legend>
+				<fieldset class="fields">
+					<input type="hidden" name="OrderID" id="updateOrderID" value="1">
+					<label> From ID: </label>1
+					<label> CustomerID to link: </label> <input type="text" name="customerID" text="#">
+
+				</fieldset>
+				<input class="btn" type="submit" id="LinkOrder" value="Link Order">
+				<input class="btn" type="button" value="cancel" onClick="browseOrder()">
+			</form>
+		</div><!-- update -->
+		<p>&nbsp;</p>
+		<div id="delete" style="display: block">
+			<form method="POST" id="DeleteOrder">
+				<legend><strong>Delete Order</strong></legend>
+				<fieldset class="fields">
+					<p>Are you sure you wish to delete the following?</p>
+					<input type="hidden" name="OrderID" id="deleteOrderID" value="1">
+					<label><strong>ID:</strong></label> 1
+
+				</fieldset>
+				<input class="btn" type="submit" id="DeleteOrder" value="Delete Order">
+				<input class="btn" type="button" value="cancel" onClick="browseOrder()">
+			</form>
+		</div><!-- delete -->
+	</article>
+</body>
+
+</html>

@@ -1,0 +1,429 @@
+
+/*   ----- Variables  -----  */
+:root {
+    --slateblack: #101010;
+    --unwhite: #f0f0f0;
+    --smoothGreen: #88fd90;
+    --lightGreen: #34aa3c;
+    --slateBlue: #0d2626;
+    --slateBlueAlpha: #05141480;
+    --paleCyan: #41e0b9;
+    --paleCyanAlpha: #75f0f020;
+    --paleCyanAlphaDark: #3e9b9b20;
+}
+
+/*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+body {
+    /* Can alternatively define in html {} or :root {} */
+    background-color: var(--slateBlue);
+    padding-top: 15px;
+    background-repeat: no-repeat;
+    color: var(--unwhite);
+    font-family: 'Roboto', sans-serif;
+    /* Define with at least one font name and its related generic family name.*/
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/*  ----- Page layout blocks -----  */
+header {
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--slateBlueAlpha);
+    text-align: center;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    min-width: fit-content;
+}
+
+main {
+    margin-top: 25px;
+    padding-right: 2%;
+    padding-left: 2%;
+    overflow-block: auto;
+}
+
+section {
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--slateBlue);
+    
+    padding: 10px;
+}
+
+article {
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    background-color: var(--slateBlueAlpha);
+    margin-top: 15px;
+    padding: 3%;
+    
+}
+
+footer {
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--slateBlue);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 1%;
+    padding-left: 2%;
+}
+
+/* ----- Anchors ----- Text links */
+
+a:link {
+    color: var(--lightGreen);
+}
+
+a:hover {
+    color: var(--unwhite);
+}
+
+a:active {
+    color: var(--unwhite);
+}
+
+a:visited {
+    color: var(--smoothGreen);
+}
+
+/*  ----- Navigation ----- */
+
+nav.global {
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    justify-content: center;
+    line-height: 30px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+nav.local {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin: 20px;
+}
+
+nav.global a {
+    padding: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: var(--smoothRed);
+    border: 2px solid var(--darkRed);
+    font-size: 130%;
+}
+
+
+nav.local a {
+    margin-top: 5px;
+    text-overflow: clip;
+    background-color: var(--slateBlueAlpha);
+    border: 2px solid var(--slateblack);
+}
+
+nav a {
+    white-space: nowrap;
+    border-radius: 5px 5px 5px 5px;
+    color: var(--unwhite);
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 3px 5px 5px 5px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: var(--paleCyan);
+    color: var(--slateblack);
+}
+
+
+ol,
+ul,
+dl {
+    margin: auto;
+    width: 80%;
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto Mono', monospace;
+}
+
+h1 {
+    border: 2px solid var(--slateblack);
+    background-color: var(--slateBlue);
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 200%;
+}
+
+h2 {
+    color: var(--unwhite);
+    text-align: center;
+    font-size: 200%;
+}
+
+strong {
+    color: var(--paleCyan);
+}
+
+
+/*  ----- Table ----- */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 5% auto;
+}
+
+thead {
+    text-align: center;
+    background-color: var(--darkRed);
+
+}
+
+tr {
+    width: 100%;
+}
+
+tr th {
+
+    padding: 8px 12px 8px 12px;
+    min-width: fit-content;
+    border: 1px solid var(--paleCyan);
+}
+
+td.number {
+    text-align: right;
+}
+
+tr td {
+    padding: 8px 12px 8px 12px;
+    min-width: fit-content;
+    border: 1px solid var(--paleCyan);
+}
+
+tr:nth-child(odd) td {
+    background-color: var(--paleCyanAlphaDark);
+}
+
+tr:nth-child(even) {
+    background-color: var(--paleCyanAlpha)
+}
+
+
+/*  ----- Form ----- */
+form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    justify-items: stretch;
+    padding: 20px;
+}
+
+fieldset {
+    border: 1px solid var(--paleCyan);
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+    padding: 15px;
+}
+
+legend {
+    color: var(--paleCyan);
+    padding: 0px 5px 0px 5px;
+    font-size: 18px;
+}
+
+label {
+    display: block;
+    margin-top: 2%;
+}
+
+label.required:after {
+    content: " *";
+    color: red;
+}
+
+input.number {
+    display: block;
+}
+
+input {
+    background-color: var(--slateBlueAlpha);
+    color: var(--unwhite);
+    font-size: 100%;
+    padding: 1%;
+    font-family: inherit;
+}
+
+input:invalid {
+    outline: 2px solid red;
+    border: 1px solid var(--slateBlue);
+}
+
+input.validation:valid {
+    border-radius: 5px;
+    outline: 2px solid lightgreen;
+    outline-style: groove;
+    border: 1px solid var(--slateBlue);
+}
+
+input[type="number"] {
+    text-align: center;
+
+    width: 20%;
+    min-width: 100px;
+    padding: 10px 0 10px 0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+select {
+    font-size: 100%;
+    padding: 1%;
+    font-family: inherit;
+}
+
+textarea {
+    background-color: var(--slateBlueAlpha);
+    color: var(--unwhite);
+    font-size: 100%;
+    padding: 1%;
+    font-family: inherit;
+    resize: none;
+    max-width: 100%;
+}
+
+textarea.validation:valid {
+    border-radius: 5px;
+    outline: 2px solid lightgreen;
+    outline-style: groove;
+    border: 1px solid var(--slateBlue);
+}
+
+textarea.validation:invalid {
+    outline: 2px solid red;
+    outline-style: groove;
+    border: 1px solid var(--slateBlue);
+}
+
+textarea.validation:focus {
+    background-color: var(--unwhite);
+    outline: 2px solid var(--paleCyan);
+}
+
+button {
+    border-radius: 5px;
+    padding: 2%;
+    color: var(--unwhite);
+    background-color: var(--smoothRed);
+}
+
+.iconbutton {
+    margin: 0;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.iconbutton.icon {
+    margin: 0;
+    min-width: 30px;
+    min-height: 30px;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+}
+
+button:hover {
+    color: var(--slateblack);
+    background-color: var(--paleCyan);
+}
+
+:focus {
+    background-color: var(--unwhite);
+    color: var(--slateblack);
+    outline: 2px solid var(--paleCyan);
+    border-radius: 5px;
+}
+
+.gallery-slide {
+    max-width: 100%;
+}
+
+a.no-underline {
+    text-decoration: none;
+}
+
+@keyframes App-logo {}
+
+/*   ===== TABLET  media query overrides mobile styles ===== */
+@media all and (min-width: 600px) {
+    body {
+        /* Can alternatively define in html {} or :root {} */
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    nav.local {
+        line-height: normal;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+}
+
+/*   ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+@media all and (min-width: 1080px) {
+    .grid-module {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    article p {
+        text-align: justify;
+    }
+
+    body {
+        /* Can alternatively define in html {} or :root {} */
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    fieldset {
+        text-align: center;
+    }
+
+    .iconbutton {
+        margin: 0;
+        min-width: 50px;
+        min-height: 50px;
+    }
+    
+    .iconbutton.icon {
+        margin: 0;
+        min-width: 50px;
+        min-height: 50px;
+    }
+}
+
+/*   ===== PRINT  media query overrides previous styles =====  */
+@media print {}

@@ -9,44 +9,45 @@
 -->
 
 <html>
+
 <head>
-<title>Assignment Manager</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript">
+	<title>Assignment Manager</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript">
 		function showform(dowhat) {
 			/*
 			* four DIVS: browse, insert, update, delete
 			* this function sets one visible the others not
 			*/
-			if (dowhat == 'insert'){
+			if (dowhat == 'insert') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'update'){
+			else if (dowhat == 'update') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'block';
 				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'linker'){
+			else if (dowhat == 'linker') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('linker').style.display = 'block';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'delete'){
+			else if (dowhat == 'delete') {
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('linker').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
-      else if (dowhat == 'all'){
+			else if (dowhat == 'all') {
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'block';
@@ -61,119 +62,121 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newAssignments() { showform('insert'); }
-    function updateAssignments(pid) { showform('update'); }
-    function deleteAssignments(pid) { showform ('delete'); }
-    function linkAssignments(pid) { showform ('linker'); }
-    function browseAssignments() { showform ('browse'); }
-    function showAll() { showform ('all'); }
-</script>
+		function newAssignments() { showform('insert'); }
+		function updateAssignments(pid) { showform('update'); }
+		function deleteAssignments(pid) { showform('delete'); }
+		function linkAssignments(pid) { showform('linker'); }
+		function browseAssignments() { showform('browse'); }
+		function showAll() { showform('all'); }
+	</script>
 </head>
 
 <body onload="browseAssignments()">
-<h1>Assignments</h1>
+	<h1>Assignments</h1>
 
-[ <a href="index.html">Index</a> | 
-<a href="employees.html">Employees</a> | 
-<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | 
-<a href="assignments.html">Assignments</a> | 
-<a href="orders.html">Orders</a> |
-<a href="customersHasOrders.html">Customers Has Orders</a> | 
-<a href="customers.html">Customers</a>  ]
+	<nav>[ <a href="index.html">Index</a> |
+		<a href="employees.html">Employees</a> |
+		<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> |
+		<a href="assignments.html">Assignments</a> |
+		<a href="orders.html">Orders</a> |
+		<a href="customersHasOrders.html">Customers Has Orders</a> |
+		<a href="customers.html">Customers</a> ]
+	</nav>
+	<article>
+		<div id="browse">
+			<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+			<table border="1" cellpadding="5">
+				<tr>
+					<th><a href="#" onClick="newAssignments()">New</a></th>
+					<th></th>
+					<th>ID</th>
+					<th>Is Complete</th>
+					<th>Employee Notes</th>
+					<th>Assign Employee</th>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
+					<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
+					<td align="right">1</td>
+					<td>Yes</td>
+					<td>1 -"Started work on mm-dd-yy"
+						2 - Mary joined assignment"
+						3 - "Completed mm-dd-yy"
+					</td>
+					<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
+					<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
+					<td align="right">2</td>
+					<td>No</td>
+					<td>1 - "Carol and Mary started work dd-mm-yy"</td>
+					<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
+				</tr>
+				<tr>
+					<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
+					<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
+					<td align="right">3</td>
+					<td>No</td>
+					<td>1 - " Dave started mm-dd--yy"</td>
+					<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
+				</tr>
+			</table>
+			<p>&nbsp;</p>
+		</div> <!-- browse -->
+		<div id="insert">
+			<form method="POST" id="AddAssignments">
+				<legend><strong>Add Assignments</strong></legend>
+				<fieldset class="fields">
+					<label> Corresponding OrderID: </label> <input type="text" name="orderID">
+					<label> Initial Notes: </label> <input type="text" name="notes">
+				</fieldset>
+				<input class="btn" type="submit" id="addAssignments" value="Add Assignments">
+				<input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			</form>
+		</div><!-- insert -->
+		<p>&nbsp;</p>
+		<div id="update">
+			<form method="POST" id="UpdateAssignments">
+				<legend><strong>Update Assignments</strong></legend>
+				<fieldset class="fields">
+					<input type="hidden" name="AssignmentsID" id="updateAssignmentsID" value="1">
+					<label> ID: </label> 1
+					<label> Edit Notes: </label> <input type="text" name="notes" value="">
+					<label> Mark Complete: </label> <input type="checkbox" name="complete" value="">
+				</fieldset>
+				<input class="btn" type="submit" id="UpdateSaveAssignments" value="Save Update Assignments">
+				<input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			</form>
+		</div><!-- update -->
+		<p>&nbsp;</p>
+		<div id="linker">
+			<form method="POST" id="LinkAssignments">
+				<legend><strong>Link Assignments</strong></legend>
+				<fieldset class="fields">
+					<input type="hidden" name="AssignmentsID" id="linkAssignmentsID" value="1">
+					<label> Assignment ID: </label> 1
+					<label> Employee ID to link: </label> <input type="text" name="notes" value="employee">
+				</fieldset>
+				<input class="btn" type="submit" id="linkSaveEmployees" value="Link Employee">
+				<input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			</form>
+		</div><!-- update -->
+		<p>&nbsp;</p>
+		<div id="delete" style="display: block">
+			<form method="POST" id="DeleteAssignments">
+				<legend><strong>Delete Assignments</strong></legend>
+				<fieldset class="fields">
+					<p>Are you sure you wish to delete the following?</p>
+					<input type="hidden" name="AssignmentsID" id="deleteAssignmentsID" value="1">
+					<label><strong>ID: </strong></label> 1
 
-<div id="browse">
-	<p><a href="#" onClick="showAll()">Display all forms</a> </p>
-	<table border="1" cellpadding="5">
-	  <tr>
-		<th><a href="#" onClick="newAssignments()">New</a></th>
-		<th></th>
-		<th>ID</th>
-		<th>Is Complete</th>
-		<th>Employee Notes</th>
-		<th>Assign Employee</th>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
-		<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
-		<td align="right" >1</td>
-		<td>Yes</td>
-		<td >1 -"Started work on mm-dd-yy" 
-			2 - Mary joined assignment" 
-			3 - "Completed mm-dd-yy"
-		</td>
-		<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
-		<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
-		<td align="right" >2</td>
-		<td >No</td>
-		<td >1 - "Carol and Mary started work dd-mm-yy"</td>
-		<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
-	  </tr>
-	  <tr>
-		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
-		<td><a href="#" onclick="deleteAssignments('this.AssignmentsID')">Delete</a></td>
-		<td align="right" >3</td>
-		<td>No</td>
-		<td >1 - " Dave started mm-dd--yy"</td>
-		<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
-	  </tr>
-	</table>
-	<p>&nbsp;</p>
-	</div> <!-- browse -->
-	<div id="insert">
-		<form method="POST" id="AddAssignments">
-			<legend><strong>Add Assignments</strong></legend>
-			  <fieldset class="fields">
-				<label> Corresponding OrderID: </label> <input type="text" name="orderID">
-				<label> Initial Notes: </label> <input type="text" name="notes">
-		  </fieldset>
-			  <input class="btn" type="submit" id="addAssignments" value="Add Assignments">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
-		</form> 
-	</div><!-- insert -->
-	<p>&nbsp;</p>
-	<div id="update">
-		<form method="POST" id="UpdateAssignments">
-			<legend><strong>Update Assignments</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="AssignmentsID" id="updateAssignmentsID" value="1">
-			  <label> ID: </label> 1
-				<label> Edit Notes: </label> <input type="text" name="notes" value="">
-				<label> Mark Complete: </label> <input type="checkbox" name="complete" value="">
-		  </fieldset>
-			  <input class="btn" type="submit" id="UpdateSaveAssignments" value="Save Update Assignments">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
-		</form> 
-	</div><!-- update -->
-	<p>&nbsp;</p>
-	<div id="linker">
-		<form method="POST" id="LinkAssignments">
-			<legend><strong>Link Assignments</strong></legend>
-			  <fieldset class="fields">
-			  <input type="hidden" name="AssignmentsID" id="linkAssignmentsID" value="1">
-			  <label> Assignment ID: </label> 1
-				<label> Employee ID to link: </label> <input type="text" name="notes" value="employee">
-		  </fieldset>
-			  <input class="btn" type="submit" id="linkSaveEmployees" value="Link Employee">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
-		</form> 
-	</div><!-- update -->
-	<p>&nbsp;</p>
-	<div id="delete" style="display: block">
-	  <form method="POST" id="DeleteAssignments">
-		  <legend><strong>Delete Assignments</strong></legend>
-			  <fieldset class="fields">
-			  <p>Are you sure you wish to delete the following?</p>
-			  <input type="hidden" name="AssignmentsID" id="deleteAssignmentsID" value="1">
-			  <label><strong>ID:</strong></label> 1
-				
-		</fieldset>
-		<input class="btn" type="submit" id="DeleteAssignments" value="Delete Assignments">
-			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
-	  </form> 
-	</div><!-- delete -->
-	
-	</body>
-	</html>
+				</fieldset>
+				<input class="btn" type="submit" id="DeleteAssignments" value="Delete Assignments">
+				<input class="btn" type="button" value="cancel" onClick="browseAssignments()">
+			</form>
+		</div><!-- delete -->
+	</article>
+</body>
+
+</html>

@@ -9,154 +9,156 @@
 -->
 
 <html>
+
 <head>
-<title>Employee Browser</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript">
-		function showform(dowhat) {
-			/*
-			* four DIVS: browse, insert, update, delete
-			* this function sets one visible the others not
-			*/
-			if (dowhat == 'insert'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'update'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
-			}
-      else if (dowhat == 'all'){
-				document.getElementById('browse').style.display = 'block';
-				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'block';
-			}
-			else { //by default display browse
-				document.getElementById('browse').style.display = 'block';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
-			}
-		}
+  <title>Employee Browser</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script language="JavaScript">
+    function showform(dowhat) {
+      /*
+      * four DIVS: browse, insert, update, delete
+      * this function sets one visible the others not
+      */
+      if (dowhat == 'insert') {
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+      }
+      else if (dowhat == 'update') {
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'block';
+        document.getElementById('delete').style.display = 'none';
+      }
+      else if (dowhat == 'delete') {
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'block';
+      }
+      else if (dowhat == 'all') {
+        document.getElementById('browse').style.display = 'block';
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('update').style.display = 'block';
+        document.getElementById('delete').style.display = 'block';
+      }
+      else { //by default display browse
+        document.getElementById('browse').style.display = 'block';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+      }
+    }
     function newEmployee() { showform('insert'); }
     function updateEmployee(pid) { showform('update'); }
-    function deleteEmployee(pid) { showform ('delete'); }
-    function browseEmployee() { showform ('browse'); }
-    function showAll() { showform ('all'); }
-</script>
+    function deleteEmployee(pid) { showform('delete'); }
+    function browseEmployee() { showform('browse'); }
+    function showAll() { showform('all'); }
+  </script>
 </head>
 
 <body onload="browseEmployee()">
-<h1>Employees</h1>
+  <h1>Employees</h1>
 
 
-[ <a href="index.html">Index</a> | 
-<a href="employees.html">Employees</a> | 
-<a href="assignmentsHasEmployees.html">Assignments Has Employees</a> | 
-<a href="assignments.html">Assignments</a> | 
-<a href="orders.html">Orders</a> |
-<a href="customersHasOrders.html">Customers Has Orders</a> | 
-<a href="customers.html">Customers</a>  ]
+  <nav>[ <a href="index.html">Index</a> |
+    <a href="employees.html">Employees</a> |
+    <a href="assignmentsHasEmployees.html">Assignments Has Employees</a> |
+    <a href="assignments.html">Assignments</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="customersHasOrders.html">Customers Has Orders</a> |
+    <a href="customers.html">Customers</a> ]
+  </nav>
+  <article>
+    <div id="browse">
+      <p><a href="#" onClick="showAll()">Display all forms</a> </p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th><a href="#" onClick="newEmployee()">New</a></th>
+          <th></th>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Assignment Count</th>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
+          <td align="right">1</td>
+          <td>joeF@dbRus.com</td>
+          <td align="right">Joe Friday</td>
+          <td align="right"></td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
+          <td align="right">2</td>
+          <td>maryA@dbRus.com</td>
+          <td align="right">Mary Alberteen</td>
+          <td align="right"></td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
+          <td align="right">3</td>
+          <td>carolS@dbRus.com</td>
+          <td align="right">Carol Smith</td>
+          <td align="right"></td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
+          <td align="right">4</td>
+          <td>daveV@dbRus.com</td>
+          <td align="right">Dave Vermation</td>
+          <td align="right"></td>
+        </tr>
 
-<div id="browse">
-    <p><a href="#" onClick="showAll()">Display all forms</a> </p>
-    <table border="1" cellpadding="5">
-      <tr>
-        <th><a href="#" onClick="newEmployee()">New</a></th>
-        <th></th>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Name</th>
-        <th>Assignment Count</th>
-      </tr>
-      <tr>
-        <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
-        <td align="right" >1</td>
-        <td >joeF@dbRus.com</td>
-        <td align="right" >Joe Friday</td>
-        <td align="right" ></td>
-      </tr>
-      <tr>
-        <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
-        <td align="right" >2</td>
-        <td>maryA@dbRus.com</td>
-        <td align="right" >Mary Alberteen</td>
-        <td align="right" ></td>
-      </tr>
-      <tr>
-        <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
-        <td align="right" >3</td>
-        <td>carolS@dbRus.com</td>
-        <td align="right" >Carol Smith</td>
-        <td align="right" ></td>
-      </tr>
-      <tr>
-        <td><a href="#" onClick="updateEmployee('this.EmployeeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteEmployee('this.EmployeeID')">Delete</a></td>
-        <td align="right" >4</td>
-        <td>daveV@dbRus.com</td>
-        <td align="right" >Dave Vermation</td>
-        <td align="right" ></td>
-      </tr>
-
-    </table>
-    <p>&nbsp;</p>
+      </table>
+      <p>&nbsp;</p>
     </div> <!-- browse -->
     <div id="insert">
-        <form method="POST" id="addEmployee">
-            <legend><strong>Add Employee</strong></legend>
-              <fieldset class="fields">
-                <label> email </label> <input type="text" name="fname">
-                <label> name </label> <input type="text" name="lname">
-          </fieldset>
-              <input class="btn" type="submit" id="addEmployee" value="Add Employee">
-              <input class="btn" type="button" value="cancel" onClick="browseEmployee()">
-        </form> 
+      <form method="POST" id="addEmployee">
+        <legend><strong>Add Employee</strong></legend>
+        <fieldset class="fields">
+          <label> email </label> <input type="text" name="fname">
+          <label> name </label> <input type="text" name="lname">
+        </fieldset>
+        <input class="btn" type="submit" id="addEmployee" value="Add Employee">
+        <input class="btn" type="button" value="cancel" onClick="browseEmployee()">
+      </form>
     </div><!-- insert -->
     <p>&nbsp;</p>
     <div id="update">
-        <form method="POST" id="UpdateEmployee">
-            <legend><strong>Update Employee</strong></legend>
-              <fieldset class="fields">
-              <input type="hidden" name="EmployeeID" id="updateEmployeeID" value="1">
-              <label> ID: </label> 1
-                <label> email </label> <input type="text" name="fname" value="joeF@dbRus.com">
-                <label> name </label> <input type="text" name="lname" value="Joe Friday">
-          </fieldset>
-              <input class="btn" type="submit" id="UpdateSaveEmployee" value="Save Update Employee">
-              <input class="btn" type="button" value="cancel" onClick="browseEmployee()">
-        </form> 
+      <form method="POST" id="UpdateEmployee">
+        <legend><strong>Update Employee</strong></legend>
+        <fieldset class="fields">
+          <input type="hidden" name="EmployeeID" id="updateEmployeeID" value="1">
+          <label> ID: </label> 1
+          <label> email </label> <input type="text" name="fname" value="joeF@dbRus.com">
+          <label> name </label> <input type="text" name="lname" value="Joe Friday">
+        </fieldset>
+        <input class="btn" type="submit" id="UpdateSaveEmployee" value="Save Update Employee">
+        <input class="btn" type="button" value="cancel" onClick="browseEmployee()">
+      </form>
     </div><!-- update -->
     <p>&nbsp;</p>
     <div id="delete" style="display: block">
       <form method="POST" id="deleteEmployee">
-          <legend><strong>Delete Employee</strong></legend>
-              <fieldset class="fields">
-              <p>Are you sure you wish to delete the following employee?</p>
-              <input type="hidden" name="EmployeeID" id="deleteEmployeeID" value="1">
-              <label><strong>ID:</strong></label> 1
-                <label> <strong>Name</strong> </label> Joe Friday
-                
+        <legend><strong>Delete Employee</strong></legend>
+        <fieldset class="fields">
+          <p>Are you sure you wish to delete the following employee?</p>
+          <input type="hidden" name="EmployeeID" id="deleteEmployeeID" value="1">
+          <label><strong>ID:</strong></label> 1
+          <label> <strong>Name</strong> </label> Joe Friday
+
         </fieldset>
         <input class="btn" type="submit" id="DeleteEmployee" value="Delete Employee">
-              <input class="btn" type="button" value="cancel" onClick="browseEmployee()">
-      </form> 
+        <input class="btn" type="button" value="cancel" onClick="browseEmployee()">
+      </form>
     </div><!-- delete -->
-    
-    </body>
-    </html>
-    
+  </article>
+</body>
+
+</html>
