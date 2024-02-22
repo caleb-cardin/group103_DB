@@ -1,4 +1,3 @@
-
 /*   ----- Variables  -----  */
 :root {
     --slateblack: #101010;
@@ -47,7 +46,7 @@ main {
 section {
     border-radius: 5px 5px 5px 5px;
     background-color: var(--slateBlue);
-    
+
     padding: 10px;
 }
 
@@ -58,7 +57,7 @@ article {
     background-color: var(--slateBlueAlpha);
     margin-top: 15px;
     padding: 3%;
-    
+
 }
 
 footer {
@@ -80,11 +79,11 @@ a:link {
 }
 
 a:hover {
-    color: var(--unwhite);
+    color: var(--slateBlue);
 }
 
 a:active {
-    color: var(--unwhite);
+    color: var(--slateBlue);
 }
 
 a:visited {
@@ -125,6 +124,7 @@ nav.global a {
 nav.local a {
     margin-top: 5px;
     text-overflow: clip;
+    color: var(--unwhite);
     background-color: var(--slateBlueAlpha);
     border: 2px solid var(--slateblack);
 }
@@ -417,7 +417,7 @@ a.no-underline {
         min-width: 50px;
         min-height: 50px;
     }
-    
+
     .iconbutton.icon {
         margin: 0;
         min-width: 50px;
