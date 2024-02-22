@@ -101,7 +101,7 @@
 			2 - Mary joined assignment" 
 			3 - "Completed mm-dd-yy"
 		</td>
-		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
+		<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	  <tr>
 		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
@@ -109,7 +109,7 @@
 		<td align="right" >2</td>
 		<td >No</td>
 		<td >1 - "Carol and Mary started work dd-mm-yy"</td>
-		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
+		<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	  <tr>
 		<td><a href="#" onClick="updateAssignments('this.AssignmentsID')">Edit</a></td>
@@ -117,7 +117,7 @@
 		<td align="right" >3</td>
 		<td>No</td>
 		<td >1 - " Dave started mm-dd--yy"</td>
-		<td><a href="#" onclick="linkAssignment('this.AssignmentsID')">Assign</a></td>
+		<td><a href="#" onclick="linkAssignments('this.AssignmentsID')">Assign</a></td>
 	  </tr>
 	</table>
 	<p>&nbsp;</p>
@@ -153,8 +153,8 @@
 			<legend><strong>Link Assignments</strong></legend>
 			  <fieldset class="fields">
 			  <input type="hidden" name="AssignmentsID" id="linkAssignmentsID" value="1">
-			  <label> ID: </label> 1
-				<label> EmployeeID to link: </label> <input type="text" name="notes" value="employee">
+			  <label> Assignment ID: </label> 1
+				<label> Employee ID to link: </label> <input type="text" name="notes" value="employee">
 		  </fieldset>
 			  <input class="btn" type="submit" id="linkSaveEmployees" value="Link Employee">
 			  <input class="btn" type="button" value="cancel" onClick="browseAssignments()">
