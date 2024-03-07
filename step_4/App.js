@@ -38,9 +38,10 @@ app.get('/', function (req, res) {
         `;
     db.pool.query(selectEmployeeQuery, function (error, rows, fields) {    // Execute the query
 
-        res.render('employee', { data: rows });                  // Render the index.hbs file, and also send the renderer
+        res.render('employee', { data: rows });                  // Render the employee.hbs file, and also send the renderer
     })
-});                                        // requesting the web site.
+});
+
 app.post('/add-employee-form', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -64,13 +65,12 @@ app.post('/add-employee-form', function (req, res) {
         }
     })
 });
-app.delete('/delete-employee-ajax', function(req,res,next){
-    let data = req.body;
-    let employeeID = parseInt(data.id);
-    let delete_employee = `DELETE FROM Employees USING Employees.employeeID = ${employeeID}`;
 
-        // Run the 1st query
-        db.pool.query(delete_employee, [employeeID], function(error, rows, fields) {
+app.delete('/delete-employee-ajax/', function (req, res, next) {
+    let data = req.body;
+    let deleteEmployees = `DELETE FROM Employees WHERE employeeID = ${data['employeeID']}`;
+
+    db.pool.query(deleteEmployees, function (error, rows, fields) {
 
         if (error) {
             console.log(error);
@@ -79,7 +79,25 @@ app.delete('/delete-employee-ajax', function(req,res,next){
             res.sendStatus(204);
         }
     })
-  });
+});
+
+app.put('/put-employee-form', function (req, res, next) {
+    let data = req.body;
+
+    let updateEmployee = `UPDATE Employees SET employeeEmail = '${data['input-email']}', employeeName= '${data['input-name']}' 
+    WHERE employeeID = ${data['input-id']}`;
+
+    db.pool.query(updateEmployee, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.send(rows);
+        }
+    })
+});
+
 /*
     LISTENER
 */

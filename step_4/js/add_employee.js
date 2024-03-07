@@ -46,9 +46,6 @@ addEmployeeForm.addEventListener("submit", function (e) {
 
 })
 
-
-// Creates a single row from an Object representing a single record from 
-// bsg_people
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -89,4 +86,10 @@ addRowToTable = (data) => {
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    let selectMenu = document.getElementById("mySelect");
+    let option = document.createElement("option");
+    option.text = newRow.name;
+    option.value = newRow.id;
+    selectMenu.add(option);
 }
