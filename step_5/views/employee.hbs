@@ -1,0 +1,73 @@
+<!-- https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%203%20-%20Integrating%20a%20Templating%20Engine%20(Handlebars)-->
+<!-- employee.hbs-->
+{{!-- Create a table --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<table id="employee-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.employeeID}}>
+            <td>{{this.employeeID}}</td>
+            <td>{{this.employeeName}}</td>
+            <td>{{this.employeeEmail}}</td>
+            <td>{{this.assignmentCount}}</td>
+            <td><button onclick="deleteEmployee({{this.employeeID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_employee.js"></script>
+
+{{!-- Form to add a record to the table --}}
+<h2>Add Employee</h2>
+<p>To add a new employee, please enter their information below and click `Submit`!</p>
+<form id="add-employee-form-ajax">
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="employeeEmail">
+
+    <label for="input-name">Name: </label>
+    <input type="text" name="input-name" id="employeeName">
+
+    <input type="submit">
+</form>
+<script src="./js/add_employee.js"></script>
+
+<h2>Updating an Employees's Info Form</h2>
+<p>To update a specific user's info select their id from the drop-down menu on the left and re-enter both the Email and Name</p>
+<form id="update-employee-form-ajax">
+
+    <label for="input-id">ID:</label>
+    <select name="input-id" id="input-id">
+        <option value="test">Select an Employee</option>
+        {{#each data}}
+        <option value="{{this.employeeID}}">{{this.employeeID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-email">Update email: </label>
+    <input type="text" name="input-email" id="input-email-update">
+
+    <label for="input-name">Update name: </label>
+    <input type="text" name="input-name" id="input-name-update">
+
+    <input type="submit">
+</form>
+
+<script src="./js/update_employee.js"></script>
