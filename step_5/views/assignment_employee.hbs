@@ -1,0 +1,60 @@
+<!-- https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%203%20-%20Integrating%20a%20Templating%20Engine%20(Handlebars)-->
+<!-- assignment_employee.hbs-->
+{{!-- Create a table --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<table id="assignment-employee-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.assignmentID}}>
+            <td>{{this.assignmentEmployeeID}}</td>
+            <td>{{this.fkAssignmentID}}</td>
+            <td>{{this.fkEmployeeID}}</td>
+            <td><button onclick="deleteAssignmentEmployee({{this.assignmentEmployeeID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_assignment_employee.js"></script>
+
+{{!-- Form to add a record to the table --}}
+<h2>Link Employee to Assignment</h2>
+<p>To link an assignment to an employee, please enter the information below and click `Submit`!</p>
+<form id="add-assignment-employee-form-ajax">
+
+    <label for="input-assignment-id-add">Assignment ID:</label>
+    <select name="input-assignment-id-add" id="input-assignment-id-add">
+        <option value="test">Select Assignment</option>
+        {{#each assignments}}
+        <option value="{{this.assignmentID}}">{{this.assignmentID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-employee-id-add">Employee ID:</label>
+    <select name="input-employee-id-add" id="input-employee-id-add">
+        <option value="test">Select Employee</option>
+        {{#each employees}}
+        <option value="{{this.employeeID}}">{{this.employeeID}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+<script src="./js/add_assignment_employee.js"></script>

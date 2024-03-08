@@ -18,6 +18,15 @@ app.use(express.static('public'))
 /*
     ROUTES
 */
+
+app.get('/', function (req, res) {
+    res.render('index');
+});
+
+
+// ----------------------------------------------------------------------
+// EMPLOYEES
+// ----------------------------------------------------------------------
 let selectEmployeeQuery = `
 SELECT
     Employees.employeeID,
@@ -31,15 +40,13 @@ GROUP BY
     Employees.employeeID
 ASC;
 `;
-app.get('/', function (req, res) {
-
+app.get('/employees-nav', function (req, res) {
 
     db.pool.query(selectEmployeeQuery, function (error, rows, fields) {    // Execute the query
 
         res.render('employee', { data: rows });                  // Render the employee.hbs file, and also send the renderer
     })
 });
-
 app.post('/add-employee-form', function (req, res) {
     let data = req.body;
 
@@ -108,6 +115,400 @@ app.put('/put-employee-ajax', function (req, res, next) {
                     res.sendStatus(400);
                 }
                 // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+// ----------------------------------------------------------------------
+// ASSIGNMENTS HAS EMPLOYEES
+// ----------------------------------------------------------------------
+let selectAssignmentsForAEQuery = `
+SELECT Assignments.assignmentID FROM Assignments;
+`;
+let selectEmployeesForAEQuery = `
+SELECT Employees.employeeID FROM Employees;
+`;
+let selectEmployeesHasAssignmentsQuery = `
+SELECT * FROM AssignmentsHasEmployees;
+`;
+app.get('/assignments-has-employees-nav', function (req, res) {
+
+    db.pool.query(selectAssignmentsForAEQuery, function (error, assignmentRows, fields) {    // Execute the query
+
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        // If all went well, send the results of the query back.
+        else {
+            db.pool.query(selectEmployeesForAEQuery, function (error, employeeRows, fields) {    // Execute the query
+
+                if (error) {
+        
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    db.pool.query(selectEmployeesHasAssignmentsQuery, function (error, rows, fields) {    // Execute the query
+                        if (error) {
+        
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+                        // If all went well, send the results of the query back.
+                        else {
+                            res.render('assignment_employee', { data: rows, assignments: assignmentRows, employees: employeeRows });
+                        }
+        
+                    })
+        
+                }
+            })
+
+        }
+    })
+
+
+});
+app.post('/add-assignment-employee-form', function (req, res) {
+    let data = req.body;
+
+    query1 = `INSERT INTO AssignmentsHasEmployees (employeeNotes, fkOrderID) VALUES ('${data.employeeNotes}', ${data.fkOrderID});`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(selectAssignmentQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+// ----------------------------------------------------------------------
+// ASSIGNMENTS
+// ----------------------------------------------------------------------
+let selectOrderForAssignmentQuery = `
+SELECT
+    Orders.orderID
+FROM
+	Orders
+LEFT JOIN Assignments ON Orders.orderID = Assignments.fkOrderID 
+WHERE Assignments.fkOrderID IS NULL;
+`;
+let selectAssignmentQuery = `
+SELECT
+    Assignments.assignmentID,
+    Assignments.isComplete,
+    Assignments.employeeNotes,
+    Assignments.fkOrderID
+FROM
+    Assignments;
+`;
+app.get('/assignments-nav', function (req, res) {
+
+    db.pool.query(selectOrderForAssignmentQuery, function (error, orderRows, fields) {    // Execute the query
+
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        // If all went well, send the results of the query back.
+        else {
+            db.pool.query(selectAssignmentQuery, function (error, rows, fields) {    // Execute the query
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.render('assignment', { data: rows, orders: orderRows });
+                }
+
+            })
+
+        }
+    })
+
+
+});
+app.post('/add-assignment-form', function (req, res) {
+    let data = req.body;
+
+    query1 = `INSERT INTO Assignments (employeeNotes, fkOrderID) VALUES ('${data.employeeNotes}', ${data.fkOrderID});`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(selectAssignmentQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+app.delete('/delete-assignment-ajax', function (req, res, next) {
+    let data = req.body;
+    let deleteAssignmentQuery = `DELETE FROM Assignments WHERE Assignments.assignmentID = ${data.assignmentID};`;
+
+    db.pool.query(deleteAssignmentQuery, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+app.put('/put-assignment-ajax', function (req, res, next) {
+    let data = req.body;
+
+
+    let updateAssignment = `UPDATE Assignments SET Assignments.employeeNotes = '${data.employeeNotes}',  Assignments.isComplete = ${data.isComplete}
+    WHERE Assignments.assignmentID = ${data.assignmentID};`;
+
+    db.pool.query(updateAssignment, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(selectAssignmentQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+
+// ----------------------------------------------------------------------
+// ORDERS
+// ----------------------------------------------------------------------
+let selectOrderQuery = `
+SELECT
+    Orders.orderID,
+    Orders.orderRequest,
+    Assignments.fkOrderID as \`assignmentID\`
+FROM
+	Orders
+LEFT JOIN Assignments ON Assignments.fkOrderID = Orders.orderID;
+`;
+app.get('/orders-nav', function (req, res) {
+
+    db.pool.query(selectOrderQuery, function (error, rows, fields) {    // Execute the query
+
+        res.render('order', { data: rows });                  // Render the order.hbs file, and also send the renderer
+    })
+});
+app.post('/add-order-form', function (req, res) {
+    let data = req.body;
+
+    query1 = `INSERT INTO Orders (orderRequest) VALUES ('${data.orderRequest}');`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(selectOrderQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+app.delete('/delete-order-ajax', function (req, res, next) {
+    let data = req.body;
+    let deleteOrderQuery = `DELETE FROM Orders WHERE Orders.orderID = ${data.orderID};`;
+
+    db.pool.query(deleteOrderQuery, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+app.put('/put-order-ajax', function (req, res, next) {
+    let data = req.body;
+
+
+    let updateOrder = `UPDATE Orders SET Orders.orderRequest = '${data.orderRequest}' 
+    WHERE Orders.orderID = ${data.orderID};`;
+
+    db.pool.query(updateOrder, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(selectOrderQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+// ----------------------------------------------------------------------
+// CUSTOMERS
+// ----------------------------------------------------------------------
+let selectCustomerQuery = `
+SELECT
+    Customers.customerID,
+    Customers.customerName,
+    Customers.customerEmail,
+    COUNT(CustomersHasOrders.customerOrderID) as \`orderCount\`
+FROM
+    Customers
+LEFT JOIN CustomersHasOrders ON CustomersHasOrders.fkCustomerID = Customers.customerID
+GROUP BY
+    Customers.customerID
+ASC;
+`;
+app.get('/customers-nav', function (req, res) {
+
+    db.pool.query(selectCustomerQuery, function (error, rows, fields) {    // Execute the query
+
+        res.render('customer', { data: rows });                  // Render the customer.hbs file, and also send the renderer
+    })
+});
+app.post('/add-customer-form', function (req, res) {
+    let data = req.body;
+
+    query1 = `INSERT INTO Customers (customerEmail, customerName) VALUES ('${data.customerEmail}', '${data.customerName}');`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(selectCustomerQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+app.delete('/delete-customer-ajax', function (req, res, next) {
+    let data = req.body;
+    let deleteCustomerQuery = `DELETE FROM Customers WHERE Customers.customerID = ${data.customerID};`;
+
+    db.pool.query(deleteCustomerQuery, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+app.put('/put-customer-ajax', function (req, res, next) {
+    let data = req.body;
+
+
+    let updateCustomer = `UPDATE Customers SET Customers.customerEmail = '${data.customerEmail}', Customers.customerName= '${data.customerName}' 
+    WHERE Customers.customerID = ${data.customerID};`;
+
+    db.pool.query(updateCustomer, function (error, rows, fields) {
+
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(selectCustomerQuery, function (error, rows, fields) {
+
+                if (error) {
+
+                    console.log(error);
+                    res.sendStatus(400);
+                }
                 else {
                     res.send(rows);
                 }

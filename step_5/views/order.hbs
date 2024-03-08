@@ -1,0 +1,65 @@
+<!-- https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%203%20-%20Integrating%20a%20Templating%20Engine%20(Handlebars)-->
+<!-- order.hbs-->
+{{!-- Create a table --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<table id="order-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.orderID}}>
+            <td>{{this.orderID}}</td>
+            <td>{{this.orderRequest}}</td>
+            <td>{{this.assignmentID}}</td>
+            <td><button onclick="deleteOrder({{this.orderID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_order.js"></script>
+
+{{!-- Form to add a record to the table --}}
+<h2>Add Order</h2>
+<p>To add a new order, please enter the information below and click `Submit`!</p>
+<form id="add-order-form-ajax">
+    <label for="input-request">Request: </label>
+    <input type="text" name="input-request" id="orderRequest">
+    <input type="submit">
+</form>
+<script src="./js/add_order.js"></script>
+
+<h2>Updating an Orders's Info Form</h2>
+<p>To update a specific user's info select their id from the drop-down menu on the left and re-enter both the Request and Name</p>
+<form id="update-order-form-ajax">
+
+    <label for="input-id">ID:</label>
+    <select name="input-id" id="input-id">
+        <option value="test">Select an Order</option>
+        {{#each data}}
+        <option value="{{this.orderID}}">{{this.orderID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-request">Update request: </label>
+    <input type="text" name="input-request" id="input-request-update">
+
+    <input type="submit">
+</form>
+
+<script src="./js/update_order.js"></script>

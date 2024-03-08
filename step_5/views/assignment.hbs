@@ -1,0 +1,79 @@
+<!-- https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%203%20-%20Integrating%20a%20Templating%20Engine%20(Handlebars)-->
+<!-- assignment.hbs-->
+{{!-- Create a table --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<table id="assignment-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.assignmentID}}>
+            <td>{{this.assignmentID}}</td>
+            <td>{{this.isComplete}}</td>
+            <td>{{this.employeeNotes}}</td>
+            <td>{{this.fkOrderID}}</td>
+            <td><button onclick="deleteAssignment({{this.assignmentID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_assignment.js"></script>
+
+{{!-- Form to add a record to the table --}}
+<h2>Add Assignment</h2>
+<p>To add a new assignment, please enter the information below and click `Submit`!</p>
+<form id="add-assignment-form-ajax">
+
+    <label for="input-id-add">Order ID:</label>
+    <select name="input-id-add" id="input-id-add">
+        <option value="test">Select corresponding Order</option>
+        {{#each orders}}
+        <option value="{{this.orderID}}">{{this.orderID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-employee-notes">EmployeeNotes: </label>
+    <input type="text" name="input-employee-notes" id="input-employee-notes">
+    <input type="submit">
+</form>
+<script src="./js/add_assignment.js"></script>
+
+<h2>Updating an Assignments's Info Form</h2>
+<p>To update a specific user's info select their id from the drop-down menu on the left and re-enter the
+    EmployeeNotes</p>
+<form id="update-assignment-form-ajax">
+
+    <label for="input-id-update">ID:</label>
+    <select name="input-id-update" id="input-id-update">
+        <option value="test">Select an Assignment</option>
+        {{#each data}}
+        <option value="{{this.assignmentID}}">{{this.assignmentID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-employee-notes">Update employeeNotes: </label>
+    <input type="text" name="input-employee-notes" id="input-employee-notes-update">
+
+    <label for="input-is-complete">Update isComplete: </label>
+    <input type="text" name="input-is-complete" id="input-is-complete-update" value="0">
+
+    <input type="submit">
+</form>
+
+<script src="./js/update_assignment.js"></script>

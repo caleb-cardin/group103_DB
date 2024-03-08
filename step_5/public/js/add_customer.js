@@ -1,16 +1,16 @@
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
 
-let addEmployeeForm = document.getElementById('add-employee-form-ajax');
+let addCustomerForm = document.getElementById('add-customer-form-ajax');
 
 // Modify the objects we need
-addEmployeeForm.addEventListener("submit", function (e) {
+addCustomerForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputEmail = document.getElementById("employeeEmail");
-    let inputName = document.getElementById("employeeName");
+    let inputEmail = document.getElementById("customerEmail");
+    let inputName = document.getElementById("customerName");
 
     // Get the values from the form fields
     let emailValue = inputEmail.value;
@@ -18,13 +18,13 @@ addEmployeeForm.addEventListener("submit", function (e) {
 
     // Put our data we want to send in a javascript object
     let data = {
-        employeeEmail: emailValue,
-        employeeName: nameValue
+        customerEmail: emailValue,
+        customerName: nameValue
     }
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-employee-form", true);
+    xhttp.open("POST", "/add-customer-form", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -50,7 +50,7 @@ addEmployeeForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("employee-table");
+    let currentTable = document.getElementById("customer-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -68,14 +68,14 @@ addRowToTable = (data) => {
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.employeeID;
-    nameCell.innerText = newRow.employeeName;
-    emailCell.innerText = newRow.employeeEmail;
-    countCell.innerText = newRow.assignmentCount;
+    idCell.innerText = newRow.customerID;
+    nameCell.innerText = newRow.customerName;
+    emailCell.innerText = newRow.customerEmail;
+    countCell.innerText = newRow.orderCount;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function(){
-        deleteEmployee(newRow.employeeID);
+        deleteCustomer(newRow.customerID);
     };
 
 
@@ -86,14 +86,14 @@ addRowToTable = (data) => {
     row.appendChild(countCell);
     row.appendChild(deleteCell);
 
-    row.setAttribute('data-value', newRow.employeeID);
+    row.setAttribute('data-value', newRow.customerID);
 
     // Add the row to the table
     currentTable.appendChild(row);
 
     let selectMenu = document.getElementById("input-id");
     let option = document.createElement("option");
-    option.text = newRow.employeeID;
-    option.value = newRow.employeeID;
+    option.text = newRow.customerID;
+    option.value = newRow.customerID;
     selectMenu.add(option);
 }

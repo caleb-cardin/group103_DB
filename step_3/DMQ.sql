@@ -109,10 +109,10 @@ DELETE FROM Assignments USING assignmentID = :assignment_ID_selected_from_browse
 SELECT
     Orders.orderID,
     Orders.orderRequest,
-    Orders.fkAssignmentID,
+    Assignments.fkOrderID as `assignmentID`
 FROM
 	Orders
-JOIN Assignments ON Orders.orderID = Assignments.fkOrderID;
+JOIN Assignments ON Assignments.fkOrderID = Orders.orderID;
 
  -- Create a new order
 INSERT INTO Orders (orderRequest) VALUES (:request_text_input);
