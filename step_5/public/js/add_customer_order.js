@@ -1,31 +1,31 @@
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
 
-let addAssignmentForm = document.getElementById('add-assignment-form-ajax');
+let addCustomerOrderForm = document.getElementById('add-customer-order-form-ajax');
 
 // Modify the objects we need
-addAssignmentForm.addEventListener("submit", function (e) {
+addCustomerOrderForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputAssignmentID = document.getElementById("input-assignment-id-add");
-    let inputEmployeeID = document.getElementById("input-employee-id-add");
+    let inputCustomerID = document.getElementById("input-customer-id-add");
+    let inputOrderID = document.getElementById("input-order-id-add");
 
 
     // Get the values from the form fields
-    let assingmentIDValue = inputAssignmentID.value;
-    let employeeIDValue = inputEmployeeID.value;
+    let customerIDValue = inputCustomerID.value;
+    let orderIDValue = inputOrderID.value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        fkAssignmentID: assingmentIDValue,
-        fkEmployeeID: employeeIDValue
+        fkCustomerID: customerIDValue,
+        fkOrderID: orderIDValue
     }
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-assignment-employee-form", true);
+    xhttp.open("POST", "/add-customer-order-form", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -36,8 +36,8 @@ addAssignmentForm.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            inputAssignmentID.value = 'test';
-            inputEmployeeID.value = 'test';
+            inputCustomerID.value = 'test';
+            inputOrderID.value = 'test';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -51,7 +51,7 @@ addAssignmentForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("assignment-employee-table");
+    let currentTable = document.getElementById("customer-order-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -63,28 +63,28 @@ addRowToTable = (data) => {
     // Create a row and 4 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let assignmentCell = document.createElement("TD");
-    let employeeCell = document.createElement("TD");
+    let customerCell = document.createElement("TD");
+    let orderCell = document.createElement("TD");
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.assignmentEmployeeID;
-    assignmentCell.innerText = newRow.fkAssignmentID;
-    employeeCell.innerText = newRow.fkEmployeeID;
+    idCell.innerText = newRow.customerOrderID;
+    customerCell.innerText = newRow.fkCustomerID;
+    orderCell.innerText = newRow.fkOrderID;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function () {
-        deleteAssignmentEmployee(newRow.assignmentEmployeeID);
+        deleteCustomerOrder(newRow.customerOrderID);
     };
 
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(assignmentCell);
-    row.appendChild(employeeCell);
+    row.appendChild(customerCell);
+    row.appendChild(orderCell);
     row.appendChild(deleteCell);
 
-    row.setAttribute('data-value', newRow.assignmentEmployeeID);
+    row.setAttribute('data-value', newRow.customerOrderID);
 
     // Add the row to the table
     currentTable.appendChild(row);

@@ -1,18 +1,18 @@
 // ----------------------------------------------------------------------
-// ASSIGNMENTS HAS EMPLOYEES
+// CUSTOMERS HAS ORDERS
 // ----------------------------------------------------------------------
-let selectAssignmentsForAEQuery = `
-SELECT * FROM Orders;
+let selectCustomersForAEQuery = `
+SELECT Customers.customerID FROM Customers;
 `;
-let selectEmployeesForAEQuery = `
-SELECT * FROM Orders;
+let selectOrdersForAEQuery = `
+SELECT Orders.orderID FROM Orders;
 `;
-let selectEmployeesHasAssignmentsQuery = `
+let selectOrdersHasCustomersQuery = `
 SELECT * FROM CustomersHasOrders;
 `;
-app.get('/assignments-employees-nav', function (req, res) {
+app.get('/customers-has-orders-nav', function (req, res) {
 
-    db.pool.query(selectAssignmentsForAEQuery, function (error, assignmentRows, fields) {    // Execute the query
+    db.pool.query(selectCustomersForAEQuery, function (error, customerRows, fields) {    // Execute the query
 
         if (error) {
 
@@ -22,7 +22,7 @@ app.get('/assignments-employees-nav', function (req, res) {
         }
         // If all went well, send the results of the query back.
         else {
-            db.pool.query(selectEmployeesForAEQuery, function (error, employeeRows, fields) {    // Execute the query
+            db.pool.query(selectOrdersForAEQuery, function (error, orderRows, fields) {    // Execute the query
 
                 if (error) {
         
@@ -32,7 +32,7 @@ app.get('/assignments-employees-nav', function (req, res) {
                 }
                 // If all went well, send the results of the query back.
                 else {
-                    db.pool.query(selectEmployeesHasAssignmentsQuery, function (error, rows, fields) {    // Execute the query
+                    db.pool.query(selectOrdersHasCustomersQuery, function (error, rows, fields) {    // Execute the query
                         if (error) {
         
                             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -41,7 +41,7 @@ app.get('/assignments-employees-nav', function (req, res) {
                         }
                         // If all went well, send the results of the query back.
                         else {
-                            res.render('assignment_employee', { data: rows, assignments: assignmentRows, empoyees: employeeRows });
+                            res.render('customer_order', { data: rows, customers: customerRows, orders: orderRows });
                         }
         
                     })
@@ -54,10 +54,10 @@ app.get('/assignments-employees-nav', function (req, res) {
 
 
 });
-app.post('/add-assignment-employee-form', function (req, res) {
+app.post('/add-customer-order-form', function (req, res) {
     let data = req.body;
 
-    query1 = `INSERT INTO AssignmentsHasEmployees (employeeNotes, fkOrderID) VALUES ('${data.employeeNotes}', ${data.fkOrderID});`;
+    query1 = `INSERT INTO CustomersHasOrders (fkCustomerID, fkOrderID) VALUES ('${data.fkCustomerID}', ${data.fkOrderID});`;
     db.pool.query(query1, function (error, rows, fields) {
 
         if (error) {

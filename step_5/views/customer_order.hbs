@@ -1,0 +1,60 @@
+<!-- https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%203%20-%20Integrating%20a%20Templating%20Engine%20(Handlebars)-->
+<!-- customer_order.hbs-->
+{{!-- Create a table --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<table id="customer-order-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.customerOrderID}}>
+            <td>{{this.customerOrderID}}</td>
+            <td>{{this.fkCustomerID}}</td>
+            <td>{{this.fkOrderID}}</td>
+            <td><button onclick="deleteCustomerOrder({{this.customerOrderID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_customer_order.js"></script>
+
+{{!-- Form to add a record to the table --}}
+<h2>Link Order to Customer</h2>
+<p>To link an customer to an order, please enter the information below and click `Submit`!</p>
+<form id="add-customer-order-form-ajax">
+
+    <label for="input-customer-id-add">Customer ID:</label>
+    <select name="input-customer-id-add" id="input-customer-id-add">
+        <option value="test">Select Customer</option>
+        {{#each customers}}
+        <option value="{{this.customerID}}">{{this.customerID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-order-id-add">Order ID:</label>
+    <select name="input-order-id-add" id="input-order-id-add">
+        <option value="test">Select Order</option>
+        {{#each orders}}
+        <option value="{{this.orderID}}">{{this.orderID}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+<script src="./js/add_customer_order.js"></script>
