@@ -2,7 +2,7 @@
 <!-- assignment_employee.hbs-->
 {{!-- Create a table --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
 <table id="assignment-employee-table">
 
     {{!-- Header section --}}
@@ -28,6 +28,7 @@
             <td>{{this.assignmentEmployeeID}}</td>
             <td>{{this.fkAssignmentID}}</td>
             <td>{{this.fkEmployeeID}}</td>
+            <td>{{this.employeeName}}</td>
             <td><button onclick="deleteAssignmentEmployee({{this.assignmentEmployeeID}})">Delete</button></td>
         </tr>
         {{/each}}
@@ -59,3 +60,20 @@
     <input type="submit">
 </form>
 <script src="./js/add_assignment_employee.js"></script>
+
+<h2>Search by Employee</h2>
+<form id="search-employee-html" method='GET' action='/assignments-has-employees-nav'>
+    <label for="employeeName">Search by Name: </label>
+    <input type="text" name="employeeName" id="employeeName">
+
+    <input type="submit">
+    <a href='/assignments-has-employees-nav'><button>Reset</button></a>
+</form>
+<h2>Search by Assignment</h2>
+<form id="search-assignment-html" method='GET' action='/assignments-has-employees-nav'>
+    <label for="fkAssignmentID">Search by Assinment ID: </label>
+    <input type="number" name="fkAssignmentID" id="fkAssignmentID">
+
+    <input type="submit">
+    <a href='/assignments-has-employees-nav'><button>Reset</button></a>
+</form>

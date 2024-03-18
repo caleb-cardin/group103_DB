@@ -135,7 +135,8 @@ let selectEmployeesForAEQuery = `
 SELECT Employees.employeeID, Employees.employeeName FROM Employees;
 `;
 let selectEmployeesHasAssignmentsQuery = `
-SELECT * FROM AssignmentsHasEmployees;
+SELECT assignmentEmployeeID, fkAssignmentID, fkEmployeeID, employeeName FROM AssignmentsHasEmployees
+LEFT JOIN Employees ON Employees.employeeID = AssignmentsHasEmployees.fkEmployeeID;
 `;
 app.get('/assignments-has-employees-nav', function (req, res) {
 
@@ -159,6 +160,7 @@ app.get('/assignments-has-employees-nav', function (req, res) {
                 }
                 // If all went well, send the results of the query back.
                 else {
+
                     db.pool.query(selectEmployeesHasAssignmentsQuery, function (error, rows, fields) {    // Execute the query
                         if (error) {
 
@@ -385,8 +387,8 @@ app.post('/add-order-form', function (req, res) {
     FROM
         Orders
     ORDER BY Orders.orderID DESC`;
-    
-    
+
+
     db.pool.query(query1, function (error, rows, fields) {
 
         if (error) {
@@ -405,11 +407,11 @@ app.post('/add-order-form', function (req, res) {
                 else {
                     query3 = `INSERT INTO CustomersHasOrders (fkCustomerID, fkOrderID) VALUES (${data.customerID}, ${rows[0].orderID});`;
 
-                    
+
                     db.pool.query(query3, function (error, rows, fields) {
 
                         if (error) {
-        
+
                             console.log(error);
                             res.sendStatus(400);
                         }
@@ -418,11 +420,11 @@ app.post('/add-order-form', function (req, res) {
                             db.pool.query(selectOrderQuery, function (error, rows, fields) {
 
                                 if (error) {
-                
+
                                     console.log(error);
                                     res.sendStatus(400);
                                 }
-        
+
                                 else {
                                     res.send(rows);
                                 }
@@ -489,7 +491,8 @@ let selectOrdersForAEQuery = `
 SELECT Orders.orderID FROM Orders;
 `;
 let selectOrdersHasCustomersQuery = `
-SELECT * FROM CustomersHasOrders;
+SELECT customerOrderID, fkCustomerID, customerName, fkOrderID FROM CustomersHasOrders
+LEFT JOIN Customers ON Customers.customerID = CustomersHasOrders.fkCustomerID;
 `;
 app.get('/customers-has-orders-nav', function (req, res) {
 

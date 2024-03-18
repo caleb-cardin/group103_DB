@@ -2,7 +2,6 @@
 <!-- assignment.hbs-->
 {{!-- Create a table --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
 <table id="assignment-table">
 
     {{!-- Header section --}}
@@ -57,7 +56,7 @@
 
 <h2>Updating an Assignments's Info Form</h2>
 <p>To update a specific user's info select their id from the drop-down menu on the left and re-enter the
-    EmployeeNotes</p>
+    notes and completion status: </p>
 <form id="update-assignment-form-ajax">
 
     <label for="input-id-update">ID:</label>
@@ -68,12 +67,14 @@
         {{/each}}
     </select>
 
-    <label for="input-employee-notes">Update employeeNotes: </label>
+    <label for="input-employee-notes">Update Notes: </label>
     <input type="text" name="input-employee-notes" id="input-employee-notes-update">
 
-    <label for="input-is-complete">Update isComplete: </label>
-    <input type="text" name="input-is-complete" id="input-is-complete-update" value="0">
-
+    <label for="input-is-complete-update">Update Completion Status: </label>
+    <select name="input-is-complete-update" id="input-is-complete-update">
+        <option value="'0'">False</option>
+        <option value="'1'">True</option>
+    </select>
     <input type="submit">
 </form>
 

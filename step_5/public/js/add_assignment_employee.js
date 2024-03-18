@@ -1,6 +1,6 @@
 // https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
 
-let addAssignmentForm = document.getElementById('add-assignment-form-ajax');
+let addAssignmentForm = document.getElementById('add-assignment-employee-form-ajax');
 
 // Modify the objects we need
 addAssignmentForm.addEventListener("submit", function (e) {
@@ -65,12 +65,14 @@ addRowToTable = (data) => {
     let idCell = document.createElement("TD");
     let assignmentCell = document.createElement("TD");
     let employeeCell = document.createElement("TD");
+    let employeeNameCell = document.createElement("TD");
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.assignmentEmployeeID;
     assignmentCell.innerText = newRow.fkAssignmentID;
     employeeCell.innerText = newRow.fkEmployeeID;
+    employeeNameCell.innerText = newRow.employeeName;
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function () {
@@ -82,6 +84,7 @@ addRowToTable = (data) => {
     row.appendChild(idCell);
     row.appendChild(assignmentCell);
     row.appendChild(employeeCell);
+    row.appendChild(employeeNameCell);
     row.appendChild(deleteCell);
 
     row.setAttribute('data-value', newRow.assignmentEmployeeID);
