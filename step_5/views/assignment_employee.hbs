@@ -24,7 +24,7 @@
     <tbody>
 
         {{#each data}}
-        <tr data-value={{this.assignmentID}}>
+        <tr data-value={{this.assignmentEmployeeID}}>
             <td>{{this.assignmentEmployeeID}}</td>
             <td>{{this.fkAssignmentID}}</td>
             <td>{{this.fkEmployeeID}}</td>
@@ -52,7 +52,7 @@
     <select name="input-employee-id-add" id="input-employee-id-add">
         <option value="test">Select Employee</option>
         {{#each employees}}
-        <option value="{{this.employeeID}}">{{this.employeeID}}</option>
+        <option value="{{this.employeeID}}">{{this.employeeName}}</option>
         {{/each}}
     </select>
 

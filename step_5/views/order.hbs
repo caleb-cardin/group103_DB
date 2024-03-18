@@ -39,8 +39,18 @@
 <h2>Add Order</h2>
 <p>To add a new order, please enter the information below and click `Submit`!</p>
 <form id="add-order-form-ajax">
+    <label for="input-id">ID:</label>
+    <select name="input-id" id="customerID">
+        <option value="test">Primary Customer : </option>
+        {{#each customers}}
+        <option value="{{this.customerID}}">{{this.customerID}} - {{this.customerName}}</option>
+        {{/each}}
+    </select>
+
     <label for="input-request">Request: </label>
     <input type="text" name="input-request" id="orderRequest">
+
+
     <input type="submit">
 </form>
 <script src="./js/add_order.js"></script>

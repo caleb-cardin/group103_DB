@@ -58,7 +58,7 @@
     <select name="input-id" id="input-id">
         <option value="test">Select an Employee</option>
         {{#each data}}
-        <option value="{{this.employeeID}}">{{this.employeeID}}</option>
+        <option value="{{this.employeeID}}">{{this.employeeID}} - {{this.employeeName}}</option>
         {{/each}}
     </select>
 
