@@ -132,10 +132,11 @@ let selectAssignmentsForAEQuery = `
 SELECT Assignments.assignmentID FROM Assignments;
 `;
 let selectEmployeesForAEQuery = `
-SELECT Employees.employeeID FROM Employees;
+SELECT Employees.employeeID, Employees.employeeName FROM Employees;
 `;
 let selectEmployeesHasAssignmentsQuery = `
-SELECT * FROM AssignmentsHasEmployees;
+SELECT assignmentEmployeeID, fkAssignmentID, fkEmployeeID, employeeName FROM AssignmentsHasEmployees
+LEFT JOIN Employees ON Employees.employeeID = AssignmentsHasEmployees.fkEmployeeID;
 `;
 app.get('/assignments-has-employees-nav', function (req, res) {
 
@@ -152,16 +153,17 @@ app.get('/assignments-has-employees-nav', function (req, res) {
             db.pool.query(selectEmployeesForAEQuery, function (error, employeeRows, fields) {    // Execute the query
 
                 if (error) {
-        
+
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
                 // If all went well, send the results of the query back.
                 else {
+
                     db.pool.query(selectEmployeesHasAssignmentsQuery, function (error, rows, fields) {    // Execute the query
                         if (error) {
-        
+
                             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
@@ -170,9 +172,9 @@ app.get('/assignments-has-employees-nav', function (req, res) {
                         else {
                             res.render('assignment_employee', { data: rows, assignments: assignmentRows, employees: employeeRows });
                         }
-        
+
                     })
-        
+
                 }
             })
 
@@ -184,7 +186,7 @@ app.get('/assignments-has-employees-nav', function (req, res) {
 app.post('/add-assignment-employee-form', function (req, res) {
     let data = req.body;
 
-    query1 = `INSERT INTO AssignmentsHasEmployees (employeeNotes, fkOrderID) VALUES ('${data.employeeNotes}', ${data.fkOrderID});`;
+    query1 = `INSERT INTO AssignmentsHasEmployees (fkAssignmentID, fkEmployeeID) VALUES ('${data.fkAssignmentID}', ${data.fkEmployeeID});`;
     db.pool.query(query1, function (error, rows, fields) {
 
         if (error) {
@@ -359,17 +361,34 @@ FROM
 	Orders
 LEFT JOIN Assignments ON Assignments.fkOrderID = Orders.orderID;
 `;
+let selectCustomerForOrderInsertQuery = `
+SELECT 
+    *
+FROM
+    Customers
+`;
 app.get('/orders-nav', function (req, res) {
 
     db.pool.query(selectOrderQuery, function (error, rows, fields) {    // Execute the query
 
-        res.render('order', { data: rows });                  // Render the order.hbs file, and also send the renderer
+        db.pool.query(selectCustomerForOrderInsertQuery, function (error, crows, fields) {    // Execute the query
+
+            res.render('order', { data: rows, customers: crows });                  // Render the order.hbs file, and also send the renderer
+        })
     })
 });
 app.post('/add-order-form', function (req, res) {
     let data = req.body;
 
     query1 = `INSERT INTO Orders (orderRequest) VALUES ('${data.orderRequest}');`;
+    query2 = `
+    SELECT 
+        Orders.orderID
+    FROM
+        Orders
+    ORDER BY Orders.orderID DESC`;
+
+
     db.pool.query(query1, function (error, rows, fields) {
 
         if (error) {
@@ -377,7 +396,7 @@ app.post('/add-order-form', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            db.pool.query(selectOrderQuery, function (error, rows, fields) {
+            db.pool.query(query2, function (error, rows, fields) {
 
                 if (error) {
 
@@ -386,7 +405,32 @@ app.post('/add-order-form', function (req, res) {
                 }
 
                 else {
-                    res.send(rows);
+                    query3 = `INSERT INTO CustomersHasOrders (fkCustomerID, fkOrderID) VALUES (${data.customerID}, ${rows[0].orderID});`;
+
+
+                    db.pool.query(query3, function (error, rows, fields) {
+
+                        if (error) {
+
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+
+                        else {
+                            db.pool.query(selectOrderQuery, function (error, rows, fields) {
+
+                                if (error) {
+
+                                    console.log(error);
+                                    res.sendStatus(400);
+                                }
+
+                                else {
+                                    res.send(rows);
+                                }
+                            })
+                        }
+                    })
                 }
             })
         }
@@ -441,13 +485,14 @@ app.put('/put-order-ajax', function (req, res, next) {
 // CUSTOMERS HAS ORDERS
 // ----------------------------------------------------------------------
 let selectCustomersForAEQuery = `
-SELECT Customers.customerID FROM Customers;
+SELECT Customers.customerID, Customers.customerName FROM Customers;
 `;
 let selectOrdersForAEQuery = `
 SELECT Orders.orderID FROM Orders;
 `;
 let selectOrdersHasCustomersQuery = `
-SELECT * FROM CustomersHasOrders;
+SELECT customerOrderID, fkCustomerID, customerName, fkOrderID FROM CustomersHasOrders
+LEFT JOIN Customers ON Customers.customerID = CustomersHasOrders.fkCustomerID;
 `;
 app.get('/customers-has-orders-nav', function (req, res) {
 
@@ -464,7 +509,7 @@ app.get('/customers-has-orders-nav', function (req, res) {
             db.pool.query(selectOrdersForAEQuery, function (error, orderRows, fields) {    // Execute the query
 
                 if (error) {
-        
+
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
@@ -473,7 +518,7 @@ app.get('/customers-has-orders-nav', function (req, res) {
                 else {
                     db.pool.query(selectOrdersHasCustomersQuery, function (error, rows, fields) {    // Execute the query
                         if (error) {
-        
+
                             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
@@ -482,9 +527,9 @@ app.get('/customers-has-orders-nav', function (req, res) {
                         else {
                             res.render('customer_order', { data: rows, customers: customerRows, orders: orderRows });
                         }
-        
+
                     })
-        
+
                 }
             })
 

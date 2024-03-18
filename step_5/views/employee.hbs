@@ -2,7 +2,6 @@
 <!-- employee.hbs-->
 {{!-- Create a table --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
 <table id="employee-table">
 
     {{!-- Header section --}}
@@ -51,14 +50,15 @@
 <script src="./js/add_employee.js"></script>
 
 <h2>Updating an Employees's Info Form</h2>
-<p>To update a specific user's info select their id from the drop-down menu on the left and re-enter both the Email and Name</p>
+<p>To update a specific employee's info select their id from the drop-down menu on the left and re-enter both the Email and
+    Name</p>
 <form id="update-employee-form-ajax">
 
     <label for="input-id">ID:</label>
     <select name="input-id" id="input-id">
         <option value="test">Select an Employee</option>
         {{#each data}}
-        <option value="{{this.employeeID}}">{{this.employeeID}}</option>
+        <option value="{{this.employeeID}}">{{this.employeeID}} - {{this.employeeName}}</option>
         {{/each}}
     </select>
 

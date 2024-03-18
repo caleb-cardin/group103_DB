@@ -2,7 +2,6 @@
 <!-- customer.hbs-->
 {{!-- Create a table --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
 <table id="customer-table">
 
     {{!-- Header section --}}
@@ -51,14 +50,15 @@
 <script src="./js/add_customer.js"></script>
 
 <h2>Updating an Customers's Info Form</h2>
-<p>To update a specific user's info select their id from the drop-down menu on the left and re-enter both the Email and Name</p>
+<p>To update a specific customers's info select their id from the drop-down menu on the left and re-enter both the Email and
+    Name</p>
 <form id="update-customer-form-ajax">
 
     <label for="input-id">ID:</label>
     <select name="input-id" id="input-id">
         <option value="test">Select an Customer</option>
         {{#each data}}
-        <option value="{{this.customerID}}">{{this.customerID}}</option>
+        <option value="{{this.customerID}}">{{this.customerID}} - {{this.customerName}}</option>
         {{/each}}
     </select>
 

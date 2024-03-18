@@ -10,13 +10,16 @@ addOrderForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputRequest = document.getElementById("orderRequest");
+    let inputCustomerID = document.getElementById("customerID");
 
     // Get the values from the form fields
     let requestValue = inputRequest.value;
+    let customerIDValue = inputCustomerID.value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        orderRequest: requestValue
+        orderRequest: requestValue,
+        customerID: customerIDValue,
     }
     
     // Setup our AJAX request

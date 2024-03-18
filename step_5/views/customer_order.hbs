@@ -2,7 +2,6 @@
 <!-- customer_order.hbs-->
 {{!-- Create a table --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
 <table id="customer-order-table">
 
     {{!-- Header section --}}
@@ -27,6 +26,7 @@
         <tr data-value={{this.customerOrderID}}>
             <td>{{this.customerOrderID}}</td>
             <td>{{this.fkCustomerID}}</td>
+            <td>{{this.customerName}}</td>
             <td>{{this.fkOrderID}}</td>
             <td><button onclick="deleteCustomerOrder({{this.customerOrderID}})">Delete</button></td>
         </tr>
@@ -44,7 +44,7 @@
     <select name="input-customer-id-add" id="input-customer-id-add">
         <option value="test">Select Customer</option>
         {{#each customers}}
-        <option value="{{this.customerID}}">{{this.customerID}}</option>
+        <option value="{{this.customerID}}">{{this.customerName}}</option>
         {{/each}}
     </select>
 
